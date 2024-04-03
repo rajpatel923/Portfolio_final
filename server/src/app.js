@@ -20,4 +20,7 @@ app.use(express.urlencoded({
 app.use(express.static("public")) //for storing files and anything into local server: link on public 
 app.use(cookieParser()) //for getting access to user's cookie and setting up the cookies
 
+import skillAddingRouter from "./routes/skills.routes.js"
+app.use("/api/v1/inputSkill",skillAddingRouter)
+
 export {app}
