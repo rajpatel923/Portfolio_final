@@ -11,24 +11,24 @@ function NavBar() {
     }
   return (
     <>
-        <div className='bg-neutral-600 px-4  lg:px-8'>
-            <div className=' flex px-4 justify-between pt-2 h-[80px] overflow-hidden'>
+        <div className='bg-neutral-600 px-4  lg:px-8 z-[100]'>
+            <div className=' flex px-4 h-[60px] justify-between pt-2 lg:h-[80px] overflow-hidden'>
                 <div className=' flex items-center justify-evenly'> {/*left side things wrapper*/}
                     <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}
                         <div id='profilePicture' className=' border-2 rounded-full border-blue-500 '>
-                            <img src='https://github.com/shadcn.png' alt='profilePicture' className=' w-12 h-12 rounded-full'></img>
+                            <img src='https://github.com/shadcn.png' alt='profilePicture' className=' w-8 h-8 lg:w-12 lg:h-12 rounded-full'></img>
                         </div>
 
                         <div className=' pr-4 mr-4'>
-                            <h3 className=' font-bold text-3xl'>PATEL RAJ</h3>
+                            <h3 className=' text-lg font-bold lg:text-3xl'>PATEL RAJ</h3>
                         </div>
                     </div>
 
                     <div className=''> {/*Explore things drop down menu*/}
                         <div className='relative'>
                             <button className={` flex items-center justify-between gap-2 hover:bg-gray-800 hover:text-white px-4 py-2 rounded-md text-sm  ${exploreSectionVisible? 'text-white bg-gray-800 ': ''}`} onClick={onExploreButtonClickHandler}>
-                                <p>Explore</p>
-                                <IoIosArrowDown className=''/>
+                                <p className=' text-sm lg:text-lg'>Explore</p>
+                                <IoIosArrowDown className='text-sm'/>
                             </button>
                         </div>
                         {
@@ -67,7 +67,7 @@ function NavBar() {
                         </div>
 
                         <div> {/*contact me button*/}
-                            <Button className=' bg-blue-400 text-whitefont-bold px-2 py-1 rounded-md text-sm'>Contact Me</Button>
+                            <Button className=' hidden lg:block bg-blue-400 text-whitefont-bold px-2 py-1 rounded-md text-sm'>Contact Me</Button>
                         </div>
                 </div>
             </div>

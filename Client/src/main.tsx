@@ -5,7 +5,7 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className=' bg-heroBg bg-transparent bg-center  h-screen bg-neutral-400 bg-blend-multiply -z-20 '>
+    <div className=' bg-heroBg bg-opacity-10 bg-transparent bg-center  h-screen  -z-20 '>
       <App />
     </div>
   </React.StrictMode>,
