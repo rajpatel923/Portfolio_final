@@ -6,15 +6,15 @@ function HeroSection() {
   return (
     <>
         <div className=' h-full w-full lg:max-h-[362px]'>
-            <div className='flex flex-col flex-shrink py-4 items-center lg:flex-row justify-between place-items-start  h-full '> {/* This will have flex-2 that will have text on left and options on the right */}
+            <div className='flex flex-col py-4 items-center lg:flex-row justify-between place-items-start  h-full '> {/* This will have flex-2 that will have text on left and options on the right */}
 
-                <div className='basis-1/3 flex flex-col items-center lg:items-start h-full lg:text-start lg:basis-2/3'> {/* Col on the left */}
+                <div className='basis-1/3 flex flex-col items-center text-center lg:items-start h-full lg:text-start lg:basis-2/3'> {/* Col on the left */}
 
                     <div>
                         <p className='text-xl lg:text-4xl text-[#c7e3ff]'>Welcome my name is...|</p>
                     </div>
 
-                    <div className=' mt-12'>
+                    <div className=' mt-8 lg:mt-12'>
                         <h1 className='text-[30px] lg:text-[54px] text-white'>Patel Raj AtulKumar</h1>
                     </div>
 
@@ -26,7 +26,7 @@ function HeroSection() {
 
                 </div>
 
-                <div className='basis-2/3 flex gap-10 h-full  lg:basis-1/3'> {/* Col on the right */}
+                <div className=' mt-20 lg:mt-0 basis-2/3 flex gap-10 h-full  lg:basis-1/3'> {/* Col on the right */}
                         <div className=' basis-1/2 flex-col gap-10 justify-between items-center'> {/* row on the top */}
 
                             <div className='basis-1/2 w-full'> {/* About me */}
