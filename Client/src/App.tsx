@@ -9,8 +9,8 @@ function App() {
 
   return (
     <>
-      <div className='lg:flex items-center justify-center h-screen z-20  '>
-        <div className='flex flex-col min-h-screen lg:min-h-0 w-full lg:mx-40 h-full lg:max-h-[768px] lg:border-[14px] border-black border-solid shadow-sm rounded-xl text-white'>
+      <div className='lg:flex items-center justify-center h-screen z-20 '>
+        <div className='flex flex-col min-h-screen lg:min-h-0 w-full lg:my-60 lg:mx-80   lg:border-[14px] border-black border-solid shadow-sm rounded-xl text-white'>
           <header className=' fixed w-full lg:static'>
             <NavBar/>
             <div className=' border w-full border-t-[0.01px] border-[#eeeeee]'></div>

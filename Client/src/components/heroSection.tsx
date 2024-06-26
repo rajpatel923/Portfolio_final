@@ -1,4 +1,3 @@
-import React from 'react'
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
 
