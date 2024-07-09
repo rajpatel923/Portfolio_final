@@ -1,8 +1,11 @@
 
 import { useState } from 'react';
 import { Button } from './ui/button'
-import { IoIosArrowDown } from "react-icons/io";
 import  downwardArrow from "../assets/downArrow.svg"
+import aboutSvg from "../assets/about.svg"
+import folderSvg from "../assets/projects.svg"
+import mailSvg from "../assets/mail.svg"
+
 
 function NavBar() {
     const [exploreSectionVisible,setExploreSectionVisible] = useState(false)
@@ -12,8 +15,8 @@ function NavBar() {
     }
   return (
     <>
-        <div className='bg-neutral-600 px-4  lg:px-8 z-[100]'>
-            <div className=' flex h-[60px] w-full justify-between pt-2'>
+        <div className='bg-neutral-600 px-4 lg:px-8 z-[100]'>
+            <div className=' flex h-[50px] w-full justify-between py-2'>
                 <div className=' flex items-center justify-between'> {/*left side things wrapper*/}
                     <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}
                         <div id='profilePicture' className=' border-2 rounded-full border-blue-500 '>
@@ -21,7 +24,7 @@ function NavBar() {
                         </div>
 
                         <div className=' pr-4 mr-4'>
-                            <h3 className=' text-lg font-bold lg:text-3xl'>PATEL RAJ</h3>
+                            <h3 className=' text-lg font-bold lg:text-2xl'>PATEL RAJ</h3>
                         </div>
                     </div>
 
@@ -37,23 +40,28 @@ function NavBar() {
                             exploreSectionVisible && (
                             <div className={` absolute z-10 mt-2 w-48 right-0 lg:left-0 text-left rounded-md bg-gray-800 text-white shadow-lg ring-1 ring-black ring-opacity-5 `}>
                                 <div className='py-1'>
-                                    <a href="#about" className='block px-4 py-2 text-sm hover:bg-gray-600'>
-                                        About
+                                    <a href="#about" className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                        <img src={aboutSvg} alt='aboutsvg' className='w-5 h-5'/>
+                                        <span className='pl-4 text-sm'>About</span>
                                     </a>
 
-                                    <a href="#projects" className='block px-4 py-2 text-sm hover:bg-gray-600'>
-                                        Projects
+                                    <a href="#projects" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                        <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
+                                       <span className='pl-4 text-sm'>Projects</span>
                                     </a>
 
-                                    <a href="#articles" className='block px-4 py-2 text-sm  hover:bg-gray-600'>
-                                        Articles
+                                    <a href="#articles" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                        <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
+                                        <span className='pl-4 text-sm'>Articles</span>
                                     </a>
 
-                                    <a href="#skills" className='block px-4 py-2 text-sm hover:bg-gray-600'>
-                                        Skills
+                                    <a href="#skills" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                        <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
+                                        <span className='pl-4 text-sm'>Skills</span>
                                     </a>
-                                    <a href="#contact" className='block px-4 py-2 text-sm  hover:bg-gray-600'>
-                                        Contact
+                                    <a href="#contact" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                        <img src={mailSvg} alt='mailSvg' className='w-5 h-5'/>
+                                        <span className='pl-4 text-sm'>Contact</span>
                                     </a>
                                 </div>
                             </div>
