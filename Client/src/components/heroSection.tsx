@@ -1,7 +1,12 @@
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
+interface heroSectionProps{
+    heroSectionHeadingTwo?:string;
+    heroSectionHeadingThree?:string;
+    heroSectionHeadingOne?:string;
+}
 
-function HeroSection() {
+function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHeadingThree}:heroSectionProps) {
   return (
     <>
         <div className=' h-full w-full'>
@@ -10,16 +15,16 @@ function HeroSection() {
                 <div className='basis-1/3 flex flex-col items-center text-center lg:items-start h-full lg:text-start lg:basis-2/3'> {/* Col on the left */}
 
                     <div>
-                        <p className='text-xl lg:text-xl text-[#c7e3ff]'>Welcome my name is...|</p>
+                        <p className='text-xl lg:text-xl text-[#c7e3ff]'>{heroSectionHeadingOne ?heroSectionHeadingOne: "Welcome my name is...|"}</p>
                     </div>
 
                     <div className=' mt-8 lg:mt-4'>
-                        <h1 className='text-[30px] lg:text-[54px] text-white'>Patel Raj AtulKumar</h1>
+                        <h1 className='text-[30px] lg:text-[54px] text-white'>{heroSectionHeadingTwo?heroSectionHeadingTwo:"Patel Raj AtulKumar"}</h1>
                     </div>
 
                     <div className=' mt-2'>
                         <p className='text-xl lg:text-2xl text-white text-opacity-80'>
-                            Full stack Developer And Machine Learning Engineer
+                            {heroSectionHeadingThree?heroSectionHeadingThree:"Full stack Developer And Machine Learning Engineer"}
                         </p>
                     </div>
 
