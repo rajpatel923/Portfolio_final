@@ -1,9 +1,9 @@
-import React from 'react'
-import Home from './home'
+
+import HeroSection from '../components/heroSection'
 
 const Error = () => {
   return (
-    <Home heroSectionHeadingOne='Ooops.......' heroSectionHeadingTwo='Page not Found' heroSectionHeadingThree='Go ahead and explore some of my other content!!!!'/>
+    <HeroSection heroSectionHeadingOne='Ooops.......' heroSectionHeadingTwo='Page not Found' heroSectionHeadingThree='Go ahead and explore some of my other content!!!!'/>
   )
 }
 
