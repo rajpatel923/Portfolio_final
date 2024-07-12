@@ -11,12 +11,16 @@ import {
 import Home from './pages/home.tsx'
 import Error from './pages/error404.tsx';
 import RootLayout from './layouts/RootLayout.tsx';
+import DetailLayout from './layouts/DetailLayout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout/>}>
       <Route path='home' element={<Home/>}/>
       <Route path='*' element={<Error/>}/>
+      <Route path='details' element={<DetailLayout/>}>
+
+      </Route>
     </Route>
   )
 )

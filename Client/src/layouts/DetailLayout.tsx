@@ -1,7 +1,7 @@
 
 const DetailLayout = () => {
   return (
-    <div>DetailLayout</div>
+    <div className=" w-full h-full flex items-center justify-center p-0 m-0">DetailLayout</div>
   )
 }
 
