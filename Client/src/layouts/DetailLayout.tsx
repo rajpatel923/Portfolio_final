@@ -1,7 +1,9 @@
 
 const DetailLayout = () => {
   return (
-    <div className=" w-full h-full flex items-center justify-center p-0 m-0">DetailLayout</div>
+    <div className="p-0 m-0 flex flex-grow justify-between items-center bg-slate-500">
+      <div>Hello</div>
+    </div>
   )
 }
 
