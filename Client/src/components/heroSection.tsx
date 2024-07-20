@@ -9,7 +9,7 @@ interface heroSectionProps{
 function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHeadingThree}:heroSectionProps) {
   return (
     <>
-        <div className="flex flex-grow items-center">
+        <div className="flex flex-grow items-center h-full mt-[68px]">
             <div className=' h-full w-full px-12 py-24'>
                 <div className='flex flex-col items-center lg:flex-row justify-between place-items-start  h-full '> {/* This will have flex-2 that will have text on left and options on the right */}
                     <div className='basis-1/3 flex flex-col items-center text-center lg:items-start h-full lg:text-start lg:basis-2/3'> {/* Col on the left */}

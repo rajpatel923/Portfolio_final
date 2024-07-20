@@ -21,7 +21,7 @@ const RootLayout = ({heroSectionHeadingOne, heroSectionHeadingTwo, heroSectionHe
             <NavBar/>
             <div className=' border w-full border-t-[0.01px] border-[#eeeeee]'></div>
           </header>
-          <main className=' flex flex-grow'>
+          <main className='flex flex-grow'>
             <Outlet/>
           </main>
           <footer className=' fixed bottom-0 w-full lg:static'>

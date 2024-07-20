@@ -1,7 +1,7 @@
 
 const DetailLayout = () => {
   return (
-    <div className="p-0 m-0 flex flex-grow justify-between items-center bg-slate-500">
+    <div className="p-0 m-0 flex flex-grow justify-between bg-slate-500">
       <div>Hello</div>
     </div>
   )
