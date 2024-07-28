@@ -25,6 +25,9 @@ export default {
       backgroundImage: {
         "bgImageForApplication":"url(/src/assets/applicationbg.png)",
         "heroBg":"url(/src/assets/heroBg.webp)"
+      },
+      colors:{
+        "primary_bg": '#2e2e2e'
       }
     },
   },

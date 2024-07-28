@@ -15,7 +15,7 @@ function NavBar() {
     }
   return (
     <>
-        <div className='bg-neutral-600 px-4 lg:px-8 z-[100]'>
+        <div className='bg-primary_bg px-4 lg:px-8 z-[100]'>
             <div className=' flex h-[50px] w-full justify-between py-2'>
                 <div className=' flex items-center justify-between'> {/*left side things wrapper*/}
                     <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}

@@ -8,7 +8,7 @@ import githubSvg from "../assets/Github.svg"
 function Footer() {
   return (
     <>
-        <div className=' max-h-fit h-[50px]  bg-neutral-600 px-4 z-[100] flex justify-between items-center'>
+        <div className=' max-h-fit h-[50px]  bg-primary_bg px-4 z-[100] flex justify-between items-center'>
             <div className="hover:bg-neutral-700 h-full flex items-center justify-between"> {/*For mail */}
                 <img src={mailSvg} alt='mailSvg' className=' w-8 h-8 mx-4'/>
             </div>

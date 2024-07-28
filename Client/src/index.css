@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+main{
+    overflow: auto;
+
+}
+/* #container_display{
+    overflow-y: auto;
+    max-height: 590px;
+    
+} */

@@ -15,13 +15,13 @@ const RootLayout = ({heroSectionHeadingOne, heroSectionHeadingTwo, heroSectionHe
   heroSectionHeadingThree === "" ? "Full stack Developer And Machine Learning Engineer": heroSectionHeadingThree;
   return (
     <div>
-      <div className='lg:flex items-center justify-center h-screen z-20'>
-        <div className='flex flex-col min-h-screen w-full lg:min-h-[76%] lg:mx-80 lg:border-[14px] border-black border-solid shadow-sm rounded-xl text-white'>
+      <div className='lg:flex items-center justify-center w-full h-screen z-2 '>
+        <div className='flex flex-col w-full lg:min-h-[76%]  lg:border-[14px] border-black border-solid shadow-sm rounded-xl text-white lg:max-w-[1140px] '>
           <header className=' fixed w-full lg:static'>
             <NavBar/>
             <div className=' border w-full border-t-[0.01px] border-[#eeeeee]'></div>
           </header>
-          <main className='flex flex-grow'>
+          <main className='flex flex-1 overflow-y-hidden'>
             <Outlet/>
           </main>
           <footer className=' fixed bottom-0 w-full lg:static'>
