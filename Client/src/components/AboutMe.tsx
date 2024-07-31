@@ -1,44 +1,29 @@
+import { useEffect, useState } from 'react'
 import about_me_downarrow from '../assets/about_me_downarrow.svg'
-
+import SpecializeFields from '../components/aboutMe/specializeFields'
+import axios from 'axios'
 
 const AboutMe = () => {
-  const abousMeContent = {
-    "title": "Lorem ipsum dolor sit amet Lorem, ipsum dolor.",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quo, vitae reprehenderit praesentium, sed ea explicabo animi optio officiis quaerat dignissimos reiciendis voluptates.",
-    "numberOfProjects": 5,
-    "yearsOfExperience": 1,
-    "profileImage": "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp",
-    "specializedField": [
-      {
-        "tittle": "Lorem ipsum dolor sit amet.",
-        "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-      },
-      {
-        "tittle": "Lorem ipsum dolor sit amet.",
-        "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-      },
-      {
-        "tittle": "Lorem ipsum dolor sit amet.",
-        "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-      },
-      {
-        "tittle": "Lorem ipsum dolor sit amet.",
-        "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-      }
-    ]
-  }
-  return (
-    <div>
 
-        <div className="p-8 lg:relative lg:ml-10 m-10  mt-4"> 
-        {/* This is for heading of the about me */}
-        {/* heading has 70% of the total width for lg screen size  */}
-        {/* the image is absolute to the container, to the right side of 30% */}
-          <h2 className=" text-4xl lg:w-[70%] w-full  ">{abousMeContent.title}</h2>
+  const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState({})
+
+  useEffect(()=>{
+    axios.get("http://localhost:8180/api/v1/users/aboutMe").then(aboutMeContent=>{
+      setaboutMeContentFromDbs(aboutMeContent.data.data)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  },[])
+  
+
+  
+  return (
+    <div className=' ml-4 mt-14'>
+        <div className="lg:relative lg:ml-10 m-10  mt-4"> 
+          {/* This is for heading of the about me */}
+          {/* heading has 70% of the total width for lg screen size  */}
+          {/* the image is absolute to the container, to the right side of 30% */}
+          <h2 className=" text-5xl lg:w-[70%] w-full font-semibold text-white/75 ">{aboutMeContentFromDbs.titleHeader}</h2>
           <img src={about_me_downarrow} about='downarrow' className=' absolute right-[23%] bottom-0 hidden lg:block w-[100px] h-[100px] lg:w-[70px] lg:h-[70px]'/>
         </div>
         
@@ -49,8 +34,8 @@ const AboutMe = () => {
               <div className='lg:max-w-[60%]'>
                 {/* this div tage is all that is for the text section  */}
                 {/* the maximum width of the tag is made 60% of total, so that the arrow ^ comes on the image or lines up on the image. */}
-                <div className=''>
-                  {abousMeContent.description}
+                <div className=' text-md text-white/60'>
+                  {aboutMeContentFromDbs.titleDesp}
                 </div>
 
                 {/* the below gird is used to display the two row and two cols  */}
@@ -64,22 +49,47 @@ const AboutMe = () => {
                     {/* using flex the styping can be done better. */}
                     <div className=' flex flex-col'>
                       <div>
-                        <h2>{abousMeContent.numberOfProjects}</h2>
+                        <h2>{aboutMeContentFromDbs.numberOfProjects} <span>+</span></h2>
                       </div>
                       <div>
                         <p>Projects Completed</p>
                       </div>
                     </div>
+
+                    {/* item 2 */}
+                    <div className=' flex flex-col'>
+                      <div>
+                        <h2>{aboutMeContentFromDbs.yearsOfExp} <span>+</span></h2>
+                      </div>
+                      <div>
+                        <p>Years of Learning Tech</p>
+                      </div>
+                    </div>
+
+                    {/* item3 */}
+                    <div className=' flex flex-col'>
+                      <div>
+                        <h2>{aboutMeContentFromDbs.numberOfProjects}</h2>
+                      </div>
+                      <div>
+                        <p>Projects Completed</p>
+                      </div>
+                    </div>
+
                 </div>
               </div>
 
-              <div className=' flex justify-center'>
+              <div className=' flex lg:justify-end w-full justify-center '>
                 {/* this is the div that content the image */}
-                <img src={abousMeContent.profileImage} className=' h-[400px] w-full max-w-[500px] ' alt="profileImage" />
+                <img src={aboutMeContentFromDbs.profileImage} className=' h-[400px] w-[350] max-w-[500px] border-2 border-solid border-purple-600 ' alt="profileImage"  />
               </div>
           </div>
-
         </div>
+
+        <div>
+          <SpecializeFields/>
+        </div>
+
     </div>
   )
 }

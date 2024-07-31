@@ -1,10 +1,14 @@
 import {Router} from "express"
-import {addSkill, getAllSkills} from "../controller/skills.controller.js"
 import { addProjectData } from "../controller/projectData.controller.js";
+import { aboutmeEdit, getAboutmeContent } from "../controller/aboutme.controller.js";
+import { getSkillsData, skillsRegister } from "../controller/skills.controller.js";
 
 const router = Router();
-router.route("/skills").post(addSkill)
+
 router.route("/projectData").post(addProjectData)
-router.route("/skills").get(getAllSkills)
+router.route("/aboutMe").post(aboutmeEdit)
+router.route("/aboutMe").get(getAboutmeContent)
+router.route("/skillDetail").get(getSkillsData)
+router.route("/skillDetail").post(skillsRegister)
 
 export default router

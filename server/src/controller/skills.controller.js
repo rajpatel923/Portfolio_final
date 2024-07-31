@@ -1,40 +1,27 @@
-import {asyncHandler} from "../utils/asyncHandler.js"
-import {ApiError} from "../utils/ApiError.js"
-import {Skills} from "../models/skills.model.js"
-import {ApiResponse} from "../utils/ApiResponse.js"
+import { skills } from "../models/skills.model.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
-const addSkill = asyncHandler(async(req,res)=>{
-    //need the skill Name
-    
-   const {skillName} = req.body
-
-   if(skillName === ""){
-        throw new ApiError(400, "For adding skill a skill is must!")
-    }
-    const skillExist = await Skills.findOne({skillName})
-    
-    if(skillExist?.skillName == skillName){
-        throw new ApiError(401, "The skill is already in the dbs")
-    }
-    await Skills.create({skillName})
-
-    return res.status(201).json(
-        new ApiResponse(200,skillName,"Successfull in adding New Skill")
+const skillsRegister = asyncHandler(async(req,res)=>{
+    const {skillImage,skillTitle,skillDesp,skillBodyImage,usageDesp,whyIlike} = req.body
+    const skillsDBResp = await skills.create({skillImage,skillTitle,skillDesp,skillBodyImage,usageDesp,whyIlike})
+    return res.status(200).json(
+        new ApiResponse(200, skillsDBResp, "skills data is saved on the dbs")
     )
 })
 
-const getAllSkills = asyncHandler(async(req,res)=>{
-    try {
-        const allSkillsFromDB = await Skills.find({})
-        return res.status(201).json(
-            new ApiResponse(200,allSkillsFromDB)
+const getSkillsData = asyncHandler(async(req,res)=>{
+    const {skillTitle} = req.body
+    await skills.findOne({skillTitle}).then((skillData)=>{
+        return res.status(200).json(
+            new ApiResponse(200,skillData,"Return skills detail data from dbs")
         )
-        
-    } catch (error) {
-        return new ApiError(401, error?.message() | "getAllSkills threw some error")
-        
-    }
-
+    }).catch((err)=>{
+        return res.status(501).json(
+            new ApiError(501, "Error return in the getSkillsData from db",err)
+        )
+    })
 })
 
-export {addSkill,getAllSkills}
+export {getSkillsData, skillsRegister}
