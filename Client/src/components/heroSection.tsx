@@ -1,5 +1,6 @@
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
+import {Link} from 'react-router-dom'
 interface heroSectionProps{
     heroSectionHeadingTwo?:string;
     heroSectionHeadingThree?:string;
@@ -29,23 +30,27 @@ function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHea
 
                     </div>
 
-                    <div className=' mt-20 lg:mt-0 basis-2/3 flex h-full  lg:basis-1/3'> {/* Col on the right */}
+                    <div className=' mt-20 lg:mt-0 basis-2/3 gap-10 flex h-full  lg:basis-1/3'> {/* Col on the right */}
                             <div className=' basis-1/2 flex flex-col gap-10 justify-between items-center'> {/* row on the top */}
 
                                 <div className='basis-1/2 w-full'> {/* About me */}
-                                        <div className='flex flex-col w-full items-center justify-center'>
+                                    <Link to={'/aboutme'}>
+                                            <div className='flex flex-col w-full items-center justify-center'>
                                             <div className=''>
                                                 <img src={aboutSvg} alt='aboutsvg' className=' w-[100px] h-[100px] lg:w-[70px] lg:h-[70px]'/>
                                             </div>
                                             <p className=' mt-2 text-center text-2xl '>About_Me</p>
-                                        </div>
+                                            </div>
+                                    </Link>
                                 </div>
 
                                 <div className='basis-1/2 w-full'> {/* Articles */}
+                                    <Link to={'articles'}>
                                         <div className='flex flex-col w-full items-center justify-center'>
                                             <img src={folderSvg} about='folderSvfg' className=' w-[100px] h-[100px] lg:w-[70px] lg:h-[70px]'/>
                                             <p className='mt-2 text-center text-2xl'>Articles</p>
                                         </div>
+                                    </Link>
                                 </div>
 
                             </div>
@@ -54,17 +59,21 @@ function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHea
         
 
                                 <div className='basis-1/2 w-full'> {/* Projects */}
+                                    <Link to={'projects'}>
                                         <div className='flex flex-col w-full items-center justify-center'>
                                             <img src={folderSvg} about='folderSvfg' className=' w-[100px] h-[100px] lg:w-[70px] lg:h-[70px]'/>
                                             <p className='mt-2 text-center text-2xl'>Projects</p>
                                         </div>
+                                    </Link>
                                 </div>
 
                                 <div className='basis-1/2 w-full'> {/* Skills */}
+                                    <Link to={'skills'}>
                                         <div className='flex flex-col w-full items-center justify-center'>
                                             <img src={folderSvg} about='folderSvfg' className=' w-[100px] h-[100px] lg:w-[70px] lg:h-[70px]'/>
                                             <p className='mt-2 text-center text-2xl'>My_skills</p>
                                         </div>
+                                    </Link>
                                 </div>
 
                             </div>

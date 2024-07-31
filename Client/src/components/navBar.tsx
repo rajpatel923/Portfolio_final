@@ -5,6 +5,7 @@ import  downwardArrow from "../assets/downArrow.svg"
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
 import mailSvg from "../assets/mail.svg"
+import {Link} from 'react-router-dom'
 
 
 function NavBar() {
@@ -18,16 +19,17 @@ function NavBar() {
         <div className='bg-primary_bg px-4 lg:px-8 z-[100]'>
             <div className=' flex h-[50px] w-full justify-between py-2'>
                 <div className=' flex items-center justify-between'> {/*left side things wrapper*/}
-                    <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}
-                        <div id='profilePicture' className=' border-2 rounded-full border-blue-500 '>
-                            <img src='https://github.com/shadcn.png' alt='profilePicture' className=' w-6 h-6 lg:w-8 lg:h-8 rounded-full'></img>
-                        </div>
+                    <Link to={'/'}>
+                        <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}
+                            <div id='profilePicture' className=' border-[1px] rounded-full border-blue-400/90 '>
+                                <img src='https://github.com/shadcn.png' alt='profilePicture' className=' w-6 h-6 lg:w-8 lg:h-8 rounded-full'></img>
+                            </div>
 
-                        <div className=' pr-4 mr-4'>
-                            <h3 className=' text-lg font-bold lg:text-2xl'>PATEL RAJ</h3>
+                            <div className=' pr-4 mr-4'>
+                                <h3 className=' text-lg font-bold lg:text-2xl'>PATEL RAJ</h3>
+                            </div>
                         </div>
-                    </div>
-
+                    </Link>
                     <div className='relative'> {/*Explore things drop down menu*/}
                         <div className=''>
                             <button className={` flex items-center justify-between gap-2 hover:bg-gray-800 hover:text-white px-4 py-2 rounded-md text-sm  ${exploreSectionVisible? 'text-white bg-gray-800 ': ''}`} onClick={onExploreButtonClickHandler}>
@@ -40,29 +42,29 @@ function NavBar() {
                             exploreSectionVisible && (
                             <div className={` absolute z-10 mt-2 w-48 right-0 lg:left-0 text-left rounded-md bg-gray-800 text-white shadow-lg ring-1 ring-black ring-opacity-5 `}>
                                 <div className='py-1'>
-                                    <a href="#about" className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/aboutme" className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
                                         <img src={aboutSvg} alt='aboutsvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>About</span>
-                                    </a>
+                                    </Link>
 
-                                    <a href="#projects" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/projects" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                        <span className='pl-4 text-sm'>Projects</span>
-                                    </a>
+                                    </Link>
 
-                                    <a href="#articles" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                    <Link to="/articles" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Articles</span>
-                                    </a>
+                                    </Link>
 
-                                    <a href="#skills" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/skills" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Skills</span>
-                                    </a>
-                                    <a href="#contact" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                    </Link>
+                                    <Link to="/contact" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
                                         <img src={mailSvg} alt='mailSvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Contact</span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             )

@@ -13,16 +13,19 @@ import Error from './pages/error404.tsx';
 import RootLayout from './layouts/RootLayout.tsx';
 import DetailLayout from './layouts/DetailLayout.tsx';
 import AboutMe from './components/AboutMe.tsx'
+import Skills from './components/skills.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout/>}>
-      <Route path='/home' element={<Home/>}/>
       <Route path='*' element={<Error/>}/>
-      <Route path='details' element={<DetailLayout/>}>
-          <Route path='aboutMe' element={<AboutMe/>}/>
+      <Route path='/' element={<Home/>}/>
+      <Route path='' element={<DetailLayout/>}>
+          <Route path='/aboutme' element={<AboutMe/>}/>
+          <Route path='skills' element={<Skills/>}/>
       </Route>
     </Route>
+    
   )
 )
 

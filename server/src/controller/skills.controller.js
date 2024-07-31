@@ -1,3 +1,4 @@
+
 import { skills } from "../models/skills.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -14,6 +15,9 @@ const skillsRegister = asyncHandler(async(req,res)=>{
 const getSkillsData = asyncHandler(async(req,res)=>{
     const {skillTitle} = req.body
     await skills.findOne({skillTitle}).then((skillData)=>{
+        if(!skillData){
+            throw new ApiError(400, "Skill not found in db")
+        }
         return res.status(200).json(
             new ApiResponse(200,skillData,"Return skills detail data from dbs")
         )

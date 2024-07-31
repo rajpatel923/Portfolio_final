@@ -5,7 +5,15 @@ import axios from 'axios'
 
 const AboutMe = () => {
 
-  const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState({})
+  const initialState = {
+    titleHeader: '',
+    titleDesp: '',
+    numberOfProjects: 0,
+    yearsOfExp: 0,
+    profileImage: ''
+  };
+
+  const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState(initialState)
 
   useEffect(()=>{
     axios.get("http://localhost:8180/api/v1/users/aboutMe").then(aboutMeContent=>{
@@ -23,7 +31,7 @@ const AboutMe = () => {
           {/* This is for heading of the about me */}
           {/* heading has 70% of the total width for lg screen size  */}
           {/* the image is absolute to the container, to the right side of 30% */}
-          <h2 className=" text-5xl lg:w-[70%] w-full font-semibold text-white/75 ">{aboutMeContentFromDbs.titleHeader}</h2>
+          <h2 className=" text-5xl lg:w-[70%] w-full font-semibold  text-secondary_tx_color ">{aboutMeContentFromDbs.titleHeader}</h2>
           <img src={about_me_downarrow} about='downarrow' className=' absolute right-[23%] bottom-0 hidden lg:block w-[100px] h-[100px] lg:w-[70px] lg:h-[70px]'/>
         </div>
         
@@ -34,7 +42,7 @@ const AboutMe = () => {
               <div className='lg:max-w-[60%]'>
                 {/* this div tage is all that is for the text section  */}
                 {/* the maximum width of the tag is made 60% of total, so that the arrow ^ comes on the image or lines up on the image. */}
-                <div className=' text-md text-white/60'>
+                <div className=' text-lg font-[500px] text-white/60'>
                   {aboutMeContentFromDbs.titleDesp}
                 </div>
 
@@ -43,13 +51,13 @@ const AboutMe = () => {
                 first row second col is for graudation date 
                 second row first col is for years of experience
                 second row second col is for know skills */}
-                <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-2 mt-[6%] gap-4 text-grayish_black text-lg'>
                     
                     {/* flex col is use to display two content in one grid box */}
                     {/* using flex the styping can be done better. */}
-                    <div className=' flex flex-col'>
-                      <div>
-                        <h2>{aboutMeContentFromDbs.numberOfProjects} <span>+</span></h2>
+                    <div className=' flex flex-col '>
+                      <div className='text-4xl font-bold mb-[3%]'>
+                        <h2 className='text-white/90'>{aboutMeContentFromDbs.numberOfProjects} <span className=' text-secondary_tx_color'>+</span></h2>
                       </div>
                       <div>
                         <p>Projects Completed</p>
@@ -58,8 +66,8 @@ const AboutMe = () => {
 
                     {/* item 2 */}
                     <div className=' flex flex-col'>
-                      <div>
-                        <h2>{aboutMeContentFromDbs.yearsOfExp} <span>+</span></h2>
+                      <div className='text-4xl font-bold mb-[3%]'>
+                        <h2 className='text-white/90'>{aboutMeContentFromDbs.yearsOfExp} <span className=' text-secondary_tx_color'>+</span></h2>
                       </div>
                       <div>
                         <p>Years of Learning Tech</p>
@@ -68,14 +76,13 @@ const AboutMe = () => {
 
                     {/* item3 */}
                     <div className=' flex flex-col'>
-                      <div>
-                        <h2>{aboutMeContentFromDbs.numberOfProjects}</h2>
+                      <div className='text-4xl font-bold mb-[3%]'>
+                        <h2 className='text-white/90'>{aboutMeContentFromDbs.numberOfProjects} <span className=' text-secondary_tx_color'>+</span></h2>
                       </div>
                       <div>
                         <p>Projects Completed</p>
                       </div>
                     </div>
-
                 </div>
               </div>
 
@@ -86,7 +93,8 @@ const AboutMe = () => {
           </div>
         </div>
 
-        <div>
+        {/* lg:ml-10 m-10  mt-4 is use to move the specializeFields container move to the left so that it can aline to the conetent above. */}
+        <div className="lg:ml-10 m-10  mt-4">
           <SpecializeFields/>
         </div>
 

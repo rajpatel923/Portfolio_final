@@ -27,7 +27,12 @@ export default {
         "heroBg":"url(/src/assets/heroBg.webp)"
       },
       colors:{
-        "primary_bg": '#2e2e2e'
+        "primary_bg": '#2e2e2e',
+        "secondary_tx_color": "#c7e3ff",
+        "grayish_black": "#bdbdbd",
+        "detailSectionBgNav": "#2e2e2e",
+        "detailSectionBgHero": "#242424",
+        
       }
     },
   },

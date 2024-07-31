@@ -25,5 +25,17 @@ const getAboutmeContent = asyncHandler(async(req,res)=>{
     })
 })
 
-export {aboutmeEdit, getAboutmeContent}
+const getSpecializedFields = asyncHandler(async(req,res)=>{
+    await Aboutme.findOne({numberOfProjects:'15'}).then((user)=>{
+        return res.status(201).json(
+            new ApiResponse(201,user.specializedFields, "Return specializedFields from dbs")
+        )
+    }).catch((err)=>{
+        return res.status(501).json(
+            new ApiError(501,"Error return the specialized data",err)
+        )
+    })
+})
+
+export {aboutmeEdit, getAboutmeContent, getSpecializedFields}
 

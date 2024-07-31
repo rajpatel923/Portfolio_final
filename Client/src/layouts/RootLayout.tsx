@@ -19,13 +19,13 @@ const RootLayout = ({heroSectionHeadingOne, heroSectionHeadingTwo, heroSectionHe
         <div className='flex flex-col w-full lg:min-h-[76%]  lg:border-[14px] border-black border-solid shadow-sm rounded-xl text-white lg:max-w-[1140px] '>
           <header className=' fixed w-full lg:static'>
             <NavBar/>
-            <div className=' border w-full border-t-[0.01px] border-[#eeeeee]'></div>
+            <div className='w-full border-t-[0.75px] border-gray-500/75'></div>
           </header>
           <main className='flex flex-1 overflow-y-hidden'>
             <Outlet/>
           </main>
           <footer className=' fixed bottom-0 w-full lg:static'>
-            <div className=' border w-full border-t-[0.01px] border-[#eeeeee]'></div>
+            <div className='  w-full border-t-[0.75px] border-gray-500/75'></div>
             <Footer/>
           </footer>
         </div>
