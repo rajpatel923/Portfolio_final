@@ -32,7 +32,6 @@ export default {
         "grayish_black": "#bdbdbd",
         "detailSectionBgNav": "#2e2e2e",
         "detailSectionBgHero": "#242424",
-        
       }
     },
   },
