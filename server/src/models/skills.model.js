@@ -1,24 +1,27 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 const skillsSchema = new mongoose.Schema({
-    skillImage:{
-        type:String
-    },
-    skillTitle:{
-        type:String,
-        unique:true
-    },
-    skillDesp:{
-        type:String
-    },
-    skillBodyImage:{
-        type:String
-    },
-    usageDesp:{
-        type:String
-    },
-    whyIlike:{
-        type:String
-    }
-})
+  skillImage: {
+    type: String,
+  },
+  skillTitle: {
+    type: String,
+    unique: true,
+  },
+  skillDesp: {
+    type: String,
+  },
+  skillBodyImage: {
+    type: String,
+  },
+  usageDesp: {
+    type: String,
+  },
+  whyIlike: {
+    type: String,
+  },
+  bgCoustomeColor: {
+    type: String,
+  },
+});
 
-export const skills = mongoose.model("skills", skillsSchema)
+export const skills = mongoose.model("skills", skillsSchema);

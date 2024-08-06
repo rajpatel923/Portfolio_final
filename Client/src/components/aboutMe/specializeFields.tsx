@@ -37,9 +37,8 @@ function SpecializeFields() {
   const [specializedField,setspecializedFields] = useState(initializeDataType)
 
   useEffect(()=>{
-    axios.get("http://localhost:8180/api/v1/users/specializedFields").then((data)=>{
+    axios.get("/api/v1/users/specializedFields").then((data)=>{
       setspecializedFields(data.data.data)
-      console.log(specializedField)
     }).catch((err)=>{
       console.log(err)
     })
@@ -53,7 +52,7 @@ function SpecializeFields() {
 
       <div className=' grid grid-cols-1 lg:grid-cols-2 mt-[4%] gap-10'>
         {
-          specializedField.map((field,index)=>{
+          specializedField?.map((field,index)=>{
             return (
               <div className="flex flex-col gap-4 justify-start" key={index}>
                 <div className=" flex flex-row gap-4 items-center">

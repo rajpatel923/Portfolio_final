@@ -16,7 +16,7 @@ const AboutMe = () => {
   const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState(initialState)
 
   useEffect(()=>{
-    axios.get("http://localhost:8180/api/v1/users/aboutMe").then(aboutMeContent=>{
+    axios.get("/api/v1/users/aboutMe").then(aboutMeContent=>{
       setaboutMeContentFromDbs(aboutMeContent.data.data)
     }).catch((err)=>{
       console.log(err)

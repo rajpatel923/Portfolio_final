@@ -1,6 +1,40 @@
+import { useEffect, useState } from "react"
 import Card from "./skillsCard/skillCard"
+import axios from "axios"
+import { Link} from "react-router-dom";
+
+interface Skills{
+  skillImage: string;
+  skillTitle: string;
+  _id: string;
+  bgCoustomeColor:string;
+}
 
 function Skills() {
+  const initializeDataType:Skills[] = [
+    {
+      skillImage: "",
+      skillTitle: "",
+      _id: "",
+      bgCoustomeColor: ""
+    }
+  ];
+
+  const [skills, setSkills] = useState<Skills[]>(initializeDataType);
+
+  useEffect(() => {
+    axios.get("/api/v1/users/getSkillTitle")
+      .then((response) => {
+        // Assuming response.data.data is an array
+        if (response.data && response.data.data) {
+          setSkills(response.data.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className=" mx-10 mt-10">
       <div className="flex flex-col items-center text-center ">
@@ -9,21 +43,14 @@ function Skills() {
       </div>
 
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-
+        {
+          skills.map((skill)=>{
+            return <Link key={skill._id} to={`/skills/${skill.skillTitle}`}>
+              <Card skillImage={skill.skillImage} skillTitle={skill.skillTitle} bgCoustomeColor={skill.bgCoustomeColor}/>
+            </Link>
+           
+          })
+        }
       </div>
     </div>
   )
