@@ -3,7 +3,9 @@ import { useParams } from 'react-router-dom'
 const SkillDetail = () => {
   const {skillTitle} = useParams()
   return (
-    <div>{skillTitle}</div>
+    <div>
+      {skillTitle}
+      </div>
   )
 }
 
