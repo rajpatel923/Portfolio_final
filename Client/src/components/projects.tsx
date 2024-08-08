@@ -44,7 +44,7 @@ const Projects = () => {
       {
           projects.map((project)=>{
             return <Link key={project._id} to={`/project/${project.title}`}>
-              <Card skillImage={project.projectImage} skillTitle={project.title} bgCoustomeColor=""/>
+              <Card skillImage={project.projectImage} skillTitle={project.title} bgCoustomeColor="" profile={true}/>
             </Link>
           })
         }

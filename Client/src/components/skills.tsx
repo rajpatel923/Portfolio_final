@@ -46,7 +46,7 @@ function Skills() {
         {
           skills.map((skill)=>{
             return <Link key={skill._id} to={`/skills/${skill.skillTitle}`}>
-              <Card skillImage={skill.skillImage} skillTitle={skill.skillTitle} bgCoustomeColor={skill.bgCoustomeColor}/>
+              <Card skillImage={skill.skillImage} skillTitle={skill.skillTitle} bgCoustomeColor={skill.bgCoustomeColor} profile={false}/>
             </Link>
            
           })
