@@ -17,13 +17,13 @@ function NavBar() {
   return (
     <>
         <div className='bg-primary_bg px-4 lg:px-8 z-[100]'>
-            <div className=' flex h-[50px] w-full justify-between py-2'>
-                <div className=' flex items-center justify-between'> {/*left side things wrapper*/}
-                    <Link to={'/'}>
+            <div className=' flex h-[80px] w-full justify-between py-2'>
+                <div className=' flex items-center justify-between w-full lg:w-fit'> {/*left side things wrapper*/}
+                    <Link to={'/'} onClick={onExploreButtonClickHandler}>
                         <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}
-                            <div id='profilePicture' className=' border-[1px] rounded-full border-blue-400/90 '>
-                                <img src='https://github.com/shadcn.png' alt='profilePicture' className=' w-6 h-6 lg:w-8 lg:h-8 rounded-full'></img>
-                            </div>
+                          
+                                <img src='https://res.cloudinary.com/slientcoder/image/upload/v1723097299/qp38yuuonswyuzojkorb.jpg' alt='profilePicture' className=' w-12 h-12 lg:w-12 lg:h-12 rounded-full object-cover border-[1px] border-blue-400/90 '></img>
+                            
 
                             <div className=' pr-4 mr-4'>
                                 <h3 className=' text-lg font-bold lg:text-2xl'>PATEL RAJ</h3>
@@ -32,7 +32,7 @@ function NavBar() {
                     </Link>
                     <div className='relative'> {/*Explore things drop down menu*/}
                         <div className=''>
-                            <button className={` flex items-center justify-between gap-2 hover:bg-gray-800 hover:text-white px-4 py-2 rounded-md text-sm  ${exploreSectionVisible? 'text-white bg-gray-800 ': ''}`} onClick={onExploreButtonClickHandler}>
+                            <button className={` flex items-center justify-between gap-2 hover:bg-gray-500/30 hover:text-white px-4 py-2 rounded-md text-sm  ${exploreSectionVisible? 'text-white bg-gray-500/30 ': ''}`} onClick={onExploreButtonClickHandler}>
                                 <p className=' text-sm lg:text-lg'>Explore</p>
                                 {/* <IoIosArrowDown className='text-sm'/> */}
                                 <img src={downwardArrow} alt='downWardArrow' className=' h-6 w-6 font-bold'/>
@@ -40,28 +40,28 @@ function NavBar() {
                         </div>
                         {
                             exploreSectionVisible && (
-                            <div className={` absolute z-10 mt-2 w-48 right-0 lg:left-0 text-left rounded-md bg-gray-800 text-white shadow-lg ring-1 ring-black ring-opacity-5 `}>
+                            <div className={` absolute z-10 mt-2 w-48 right-0 lg:left-0 text-left rounded-md bg-primary_bg text-white shadow-lg ring-1 ring-black ring-opacity-5 `}>
                                 <div className='py-1'>
-                                    <Link to="/aboutme" className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/aboutme" onClick={onExploreButtonClickHandler} className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
                                         <img src={aboutSvg} alt='aboutsvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>About</span>
                                     </Link>
 
-                                    <Link to="/projects" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/projects" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm hover:bg-gray-600'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                        <span className='pl-4 text-sm'>Projects</span>
                                     </Link>
 
-                                    <Link to="/articles" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                    <Link to="/articles" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Articles</span>
                                     </Link>
 
-                                    <Link to="/skills" className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/skills" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm hover:bg-gray-600'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Skills</span>
                                     </Link>
-                                    <Link to="/contact" className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                    <Link to="/contact" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
                                         <img src={mailSvg} alt='mailSvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Contact</span>
                                     </Link>

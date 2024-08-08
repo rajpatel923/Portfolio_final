@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { addProjectData } from "../controller/projectData.controller.js";
+import {
+  addProjectData,
+  getProjectsName,
+} from "../controller/projectData.controller.js";
 import {
   aboutmeEdit,
   getAboutmeContent,
@@ -14,10 +17,32 @@ import { upload } from "../middlerware/multer.middleware.js";
 
 const router = Router();
 
-router.route("/projectData").post(addProjectData);
 router.route("/aboutMe").post(aboutmeEdit);
 router.route("/aboutMe").get(getAboutmeContent);
-router.route("/skillDetail").get(getSkillsData);
+
+router.route("/getProjectsName").get(getProjectsName);
+router.route("/projectData").post(
+  upload.fields([
+    {
+      name: "projectImage",
+      maxCount: 1,
+    },
+    {
+      name: "problemImage",
+      maxCount: 1,
+    },
+    {
+      name: "solutionImage",
+      maxCount: 1,
+    },
+    {
+      name: "resultImage",
+      maxCount: 1,
+    },
+  ]),
+  addProjectData
+);
+
 //adding skills to the dbs
 router.route("/skillDetail").post(
   upload.fields([

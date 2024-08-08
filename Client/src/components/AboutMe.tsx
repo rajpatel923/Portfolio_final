@@ -86,9 +86,9 @@ const AboutMe = () => {
                 </div>
               </div>
 
-              <div className=' flex lg:justify-end w-full justify-center '>
+              <div className=' flex mt-4 lg:justify-end w-full justify-center '>
                 {/* this is the div that content the image */}
-                <img src={aboutMeContentFromDbs.profileImage} className=' h-[400px] w-[350] max-w-[500px] border-2 border-solid border-purple-600 ' alt="profileImage"  />
+                <img src={aboutMeContentFromDbs.profileImage} className=' h-[500px] lg:h-[550px] object-fill w-[350] max-w-[600px] border-2 border-solid ' alt="profileImage"  />
               </div>
           </div>
         </div>
