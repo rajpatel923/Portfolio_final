@@ -2,7 +2,7 @@ interface CardProps{
   skillImage:string,
   skillTitle:string,
   bgCoustomeColor:string,
-  profile:boolean
+  profile?:boolean
 }
 
 // TODO get the pors of imageString URL and bg color of the container and also the image tag caption.

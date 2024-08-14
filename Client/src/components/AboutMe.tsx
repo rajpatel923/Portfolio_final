@@ -94,7 +94,7 @@ const AboutMe = () => {
         </div>
 
         {/* lg:ml-10 m-10  mt-4 is use to move the specializeFields container move to the left so that it can aline to the conetent above. */}
-        <div className="lg:ml-10 m-10  mt-4">
+        <div className="lg:ml-10 m-10 mt-8 mb-24">
           <SpecializeFields/>
         </div>
 

@@ -16,6 +16,7 @@ import AboutMe from './components/AboutMe.tsx'
 import Skills from './components/skills.tsx';
 import SkillDetail from './components/skillDetails/skillsDetails.tsx';
 import Projects from './components/projects.tsx';
+import ProjectsDetail from './components/skillDetails/projectsDetails.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
           <Route path='skills' element={<Skills/>}/>
           <Route path='skills/:skillTitle' element={<SkillDetail/>}/>
           <Route path='/projects' element={<Projects/>}/>
+          <Route path='projects/:projects' element={<ProjectsDetail/>}/>
       </Route>
     </Route>
     

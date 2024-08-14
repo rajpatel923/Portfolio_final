@@ -11,29 +11,6 @@ function SpecializeFields() {
       'fieldDesp':''
     }
   ]
-  // const specializedField = [
-  //   {
-  //     "tittle": "Lorem ipsum dolor sit amet.",
-  //     "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-  //     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-  //   },
-  //   {
-  //     "tittle": "Lorem ipsum dolor sit amet.",
-  //     "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-  //     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-  //   },
-  //   {
-  //     "tittle": "Lorem ipsum dolor sit amet.",
-  //     "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-  //     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-  //   },
-  //   {
-  //     "tittle": "Lorem ipsum dolor sit amet.",
-  //     "icon": "https://www.svgrepo.com/show/530661/genetic-data.svg",
-  //     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium facilis ab, perferendis inventore vitae minus, aliquid alias aspernatur corrupti impedit quis dignissimos illum?"
-  //   }
-  // ]
-
   const [specializedField,setspecializedFields] = useState(initializeDataType)
 
   useEffect(()=>{
@@ -56,7 +33,6 @@ function SpecializeFields() {
             return (
               <div className="flex flex-col gap-4 justify-start" key={index}>
                 <div className=" flex flex-row gap-4 items-center">
-                  {/* //Todo to edit the src field  */}
                   <img src={field.icon ?web_dev : web_dev} className="w-8 h-8 text-secondary_tx_color"/>
                   <h2 className=' text-2xl font-semibold text-white/90 '>{field.fieldTitle}</h2>
                 </div>
@@ -66,7 +42,6 @@ function SpecializeFields() {
           })
         }
       </div>
-
     </div>
   )
 }

@@ -25,7 +25,7 @@ const projectDataSchema = new Schema({
     require: true,
   },
   projectImage: {
-    type: String,
+    type: [String],
     require: true,
   },
   problemDesp: {

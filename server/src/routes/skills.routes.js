@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addProjectData,
+  getProjectDetails,
   getProjectsName,
 } from "../controller/projectData.controller.js";
 import {
@@ -20,12 +21,12 @@ const router = Router();
 router.route("/aboutMe").post(aboutmeEdit);
 router.route("/aboutMe").get(getAboutmeContent);
 
+//projects
 router.route("/getProjectsName").get(getProjectsName);
 router.route("/projectData").post(
   upload.fields([
     {
       name: "projectImage",
-      maxCount: 1,
     },
     {
       name: "problemImage",
@@ -42,6 +43,7 @@ router.route("/projectData").post(
   ]),
   addProjectData
 );
+router.route("/getProjectDetails").get(getProjectDetails);
 
 //adding skills to the dbs
 router.route("/skillDetail").post(
@@ -59,7 +61,7 @@ router.route("/skillDetail").post(
 );
 //get the data from the dbs
 router.route("/specializedFields").get(getSpecializedFields);
-
 router.route("/getSkillTitle").get(getSkillsName);
+router.route("/getSkillDetail").get(getSkillsData);
 
 export default router;

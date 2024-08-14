@@ -48,7 +48,6 @@ function Skills() {
             return <Link key={skill._id} to={`/skills/${skill.skillTitle}`}>
               <Card skillImage={skill.skillImage} skillTitle={skill.skillTitle} bgCoustomeColor={skill.bgCoustomeColor} profile={false}/>
             </Link>
-           
           })
         }
       </div>

@@ -56,9 +56,13 @@ const skillsRegister = asyncHandler(async (req, res) => {
 });
 
 const getSkillsData = asyncHandler(async (req, res) => {
-  const { skillTitle } = req.body;
+  const { skillTitle } = req.query;
+  console.log(skillTitle);
+  if (!skillTitle) {
+    throw new ApiError(401, "skillTilte is required to find skill data");
+  }
   await skills
-    .findOne({ skillTitle })
+    .find({ skillTitle: skillTitle.skillTitle })
     .then((skillData) => {
       if (!skillData) {
         throw new ApiError(400, "Skill not found in db");

@@ -15,7 +15,7 @@ const DetailLayout = () => {
         {/* expanding the second give to the 7 col, so inshort taking all the available space.  */}
         <div className="col-span-7 h-full" > 
           <div className="flex flex-col flex-grow-0 overflow-hidden "> 
-            <div className="hidden lg:block border-b-[1px] border-gray-500/75">Header</div>
+            <div className="hidden lg:block border-b-[1px] ">Header</div>
             <div className=" overflow-y-auto flex-1 min-h-0 lg:max-h-[573px] bg-detailSectionBgHero">
               <Outlet/>
             </div>

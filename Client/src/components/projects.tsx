@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from "./skillsCard/skillCard"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 interface Projects{
-  projectImage:string,
+  projectImage:[string],
   title:string,
   _id:string,
 }
@@ -12,7 +12,7 @@ interface Projects{
 const Projects = () => {
   const initializeDataType:Projects[] = [
     {
-      projectImage:"",
+      projectImage:[""],
       title:"",
       _id:"",
     }
@@ -43,8 +43,8 @@ const Projects = () => {
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
           projects.map((project)=>{
-            return <Link key={project._id} to={`/project/${project.title}`}>
-              <Card skillImage={project.projectImage} skillTitle={project.title} bgCoustomeColor="" profile={true}/>
+            return <Link key={project._id} to={`/projects/${project.title}`}>
+              <Card skillImage={project.projectImage[0]} skillTitle={project.title} bgCoustomeColor="" profile={true}/>
             </Link>
           })
         }

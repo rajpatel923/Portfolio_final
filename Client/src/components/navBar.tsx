@@ -19,12 +19,9 @@ function NavBar() {
         <div className='bg-primary_bg px-4 lg:px-8 z-[100]'>
             <div className=' flex h-[80px] w-full justify-between py-2'>
                 <div className=' flex items-center justify-between w-full lg:w-fit'> {/*left side things wrapper*/}
-                    <Link to={'/'} onClick={onExploreButtonClickHandler}>
-                        <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}
-                          
-                                <img src='https://res.cloudinary.com/slientcoder/image/upload/v1723097299/qp38yuuonswyuzojkorb.jpg' alt='profilePicture' className=' w-12 h-12 lg:w-12 lg:h-12 rounded-full object-cover border-[1px] border-blue-400/90 '></img>
-                            
-
+                    <Link to={'/'}>
+                        <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}                  
+                                <img src='https://res.cloudinary.com/slientcoder/image/upload/v1723097299/qp38yuuonswyuzojkorb.jpg' alt='profilePicture' className=' w-12 h-12 lg:w-12 lg:h-12 rounded-full object-cover border-[1px] border-blue-400/90 '></img>         
                             <div className=' pr-4 mr-4'>
                                 <h3 className=' text-lg font-bold lg:text-2xl'>PATEL RAJ</h3>
                             </div>

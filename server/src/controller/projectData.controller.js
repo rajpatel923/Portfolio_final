@@ -38,17 +38,21 @@ const addProjectData = asyncHandler(async (req, res) => {
       "The project is alreay present in dbs with the same tilte"
     );
   }
-  const projectImageLocalPath = req.files?.projectImage[0]?.path;
+  const projectImageLocalPathFirst = req.files?.projectImage[0]?.path;
+  console.log(projectImageLocalPathFirst);
+  const projectImageLocalPathSecond = req.files?.projectImage[1]?.path;
+  console.log(projectImageLocalPathSecond);
   const problemImageLocalPath = req.files?.problemImage[0]?.path;
   const solutionImageLocalPath = req.files?.solutionImage[0]?.path;
   const resultImageLocalPath = req.files?.resultImage[0]?.path;
 
   if (
     [
-      projectImageLocalPath,
+      projectImageLocalPathFirst,
       problemImageLocalPath,
       solutionImageLocalPath,
       resultImageLocalPath,
+      projectImageLocalPathSecond,
     ].some((field) => {
       return field === "" || field === undefined;
     })
@@ -59,12 +63,18 @@ const addProjectData = asyncHandler(async (req, res) => {
     );
   }
 
-  const projectImage = await upLoadFileOnCloudinary(projectImageLocalPath);
+  const projectImageFirst = await upLoadFileOnCloudinary(
+    projectImageLocalPathFirst
+  );
+  console.log(projectImageLocalPathSecond);
+  const projectImageSecond = await upLoadFileOnCloudinary(
+    projectImageLocalPathSecond
+  );
   const problemImage = await upLoadFileOnCloudinary(problemImageLocalPath);
   const solutionImage = await upLoadFileOnCloudinary(solutionImageLocalPath);
   const resultImage = await upLoadFileOnCloudinary(resultImageLocalPath);
 
-  if (!projectImage) {
+  if (!projectImageFirst || !projectImageSecond) {
     throw new ApiError(501, "Project image fail to upload on cloudinary");
   }
   const projectDBResp = await ProjectData.create({
@@ -74,7 +84,7 @@ const addProjectData = asyncHandler(async (req, res) => {
     relatedSkills: relatedSkills?.length() ? relatedSkills : [],
     completedDate,
     link,
-    projectImage: projectImage.url,
+    projectImage: [projectImageFirst.url, projectImageSecond.url],
     problemDesp: problemDesp ? problemDesp : "",
     problemImage: problemImage.url,
     solutionDesp: solutionDesp ? solutionDesp : "",
@@ -114,4 +124,34 @@ const getProjectsName = asyncHandler(async (req, res) => {
     );
 });
 
-export { addProjectData, getProjectsName };
+const getProjectDetails = asyncHandler(async (req, res) => {
+  const { projectTitle } = req.query;
+  console.log(projectTitle);
+  if (!projectTitle) {
+    throw new ApiError(
+      401,
+      "Project File is required for projectDetial lookup"
+    );
+  }
+  await ProjectData.find({ title: projectTitle })
+    .then((project) => {
+      if (!project) {
+        throw new ApiError("Error getting the project from dbs");
+      }
+      console.log(project);
+      res
+        .status(200)
+        .json(
+          new ApiResponse(
+            200,
+            project,
+            "Successfully fetch the project details"
+          )
+        );
+    })
+    .catch((error) => {
+      throw new ApiError(401, "project does'nt exist in the dbs");
+    });
+});
+
+export { addProjectData, getProjectsName, getProjectDetails };
