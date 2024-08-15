@@ -59,17 +59,17 @@ const ProjectsDetail = () => {
         </div>
       </Link>
 
-    <div className=' mx-10'>
+      <div className=' mx-10'>
         <h1 className='font-extrabold text-4xl pt-8 w-fit h-fit mb-6'>{project.title}</h1>
         
         <p className='text-zinc-400 mb-6'>
             {project.description}
         </p>
 
-        <div className=' grid grid-cols-1 lg:grid-cols-4 justify-end gap-8'>
+        <div className=' grid grid-cols-1 lg:grid-cols-4 justify-end gap-8 mb-8'>
             <div className=''>
-              <h5>Skills:</h5>
-              <ul className='list-none flex flex-row flex-wrap gap-4 justify-stretch pr-6 text-sm font-light'>
+              <h5 className='text-zinc-300/50'>Skills:</h5>
+              <ul className='list-none flex flex-row flex-wrap gap-4 justify-stretch pr-6 text-sm font-light mt-4'>
                 {
                   project.relatedSkills.map((skill)=>{
                     return <li key={skill}>
@@ -80,20 +80,34 @@ const ProjectsDetail = () => {
               </ul>
             </div>
             <div>
-              <h5>Category :</h5>
-              <p>{project.category}</p>
+              <h5 className='text-zinc-300/50'>Category :</h5>
+              <p className='mt-4'>{project.category}</p>
             </div>
             <div>
-              <h5>Completed :</h5>
-              <p>{project.completedDate}</p>
+              <h5 className='text-zinc-300/50'>Completed :</h5>
+              <p className='mt-4'>{project.completedDate}</p>
             </div>
             <div>
-              <h5>Link :</h5>
-              <p className=' w-full overflow-x-clip'>{project.link}</p>
+              <h5 className='text-zinc-300/50'>Link :</h5>
+              <p className=' w-full overflow-x-clip mt-4'>{project.link}</p>
             </div>
-          
         </div>
-    </div>
+
+                {/*TODO need to solve the error */}
+        <img className=' border border-none rounded-md ob
+        ect-fill mt-16' src={project.projectImage[1]}></img>
+
+      <h1 className='font-extrabold text-4xl pt-8 w-fit h-fit mb-6'>{
+          project.problemDesp!="" ? "Problem :" : ""
+        }</h1>
+        <p>
+          {project.problemDesp}
+        </p>
+        <img className=' border border-none rounded-md w-fit  mt-16' src={project.problemImage}></img>
+
+
+
+      </div>
       
     </div>
   )
