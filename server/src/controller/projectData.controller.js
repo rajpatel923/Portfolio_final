@@ -39,9 +39,9 @@ const addProjectData = asyncHandler(async (req, res) => {
     );
   }
   const projectImageLocalPathFirst = req.files?.projectImage[0]?.path;
-  console.log(projectImageLocalPathFirst);
+
   const projectImageLocalPathSecond = req.files?.projectImage[1]?.path;
-  console.log(projectImageLocalPathSecond);
+
   const problemImageLocalPath = req.files?.problemImage[0]?.path;
   const solutionImageLocalPath = req.files?.solutionImage[0]?.path;
   const resultImageLocalPath = req.files?.resultImage[0]?.path;
@@ -66,7 +66,7 @@ const addProjectData = asyncHandler(async (req, res) => {
   const projectImageFirst = await upLoadFileOnCloudinary(
     projectImageLocalPathFirst
   );
-  console.log(projectImageLocalPathSecond);
+
   const projectImageSecond = await upLoadFileOnCloudinary(
     projectImageLocalPathSecond
   );
@@ -126,7 +126,7 @@ const getProjectsName = asyncHandler(async (req, res) => {
 
 const getProjectDetails = asyncHandler(async (req, res) => {
   const { projectTitle } = req.query;
-  console.log(projectTitle);
+
   if (!projectTitle) {
     throw new ApiError(
       401,
@@ -138,7 +138,6 @@ const getProjectDetails = asyncHandler(async (req, res) => {
       if (!project) {
         throw new ApiError("Error getting the project from dbs");
       }
-      console.log(project);
       res
         .status(200)
         .json(

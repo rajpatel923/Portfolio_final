@@ -57,7 +57,6 @@ const skillsRegister = asyncHandler(async (req, res) => {
 
 const getSkillsData = asyncHandler(async (req, res) => {
   const { skillTitle } = req.query;
-  console.log(skillTitle);
   if (!skillTitle) {
     throw new ApiError(401, "skillTilte is required to find skill data");
   }

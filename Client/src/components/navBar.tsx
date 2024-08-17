@@ -78,7 +78,9 @@ function NavBar() {
                         </div>
 
                         <div> {/*contact me button*/}
-                            <Button className=' lg:block bg-blue-400 text-whitefont-bold px-2 py-1 rounded-md text-sm'>Contact Me</Button>
+                            <Link to={'/contact'}>
+                                 <Button className=' lg:block bg-blue-400 text-whitefont-bold px-2 py-1 rounded-md text-sm'>Contact Me</Button>
+                            </Link>
                         </div>
                 </div>
             </div>
