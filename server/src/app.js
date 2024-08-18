@@ -23,6 +23,8 @@ app.use(express.static("public")); //for storing files and anything into local s
 app.use(cookieParser()); //for getting access to user's cookie and setting up the cookies
 
 import userRouter from "./routes/skills.routes.js";
+import contactRouter from "./routes/contact.routes.js";
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/contactMe", contactRouter);
 
 export { app };
