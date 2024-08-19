@@ -29,7 +29,7 @@ function NavBar() {
                     </Link>
                     <div className='relative'> {/*Explore things drop down menu*/}
                         <div className=''>
-                            <button className={` flex items-center justify-between gap-2 hover:bg-gray-500/30 hover:text-white px-4 py-2 rounded-md text-sm  ${exploreSectionVisible? 'text-white bg-gray-500/30 ': ''}`} onClick={onExploreButtonClickHandler}>
+                            <button className={` flex items-center justify-between gap-2 bg-neutral-700 border-[0.1px] border-neutral-500/80 shadow-sm hover:bg-gray-500/30 hover:text-white px-4 py-1 rounded-full text-sm  ${exploreSectionVisible? 'text-white bg-gray-500/30 ': ''}`} onClick={onExploreButtonClickHandler}>
                                 <p className=' text-sm lg:text-lg'>Explore</p>
                                 {/* <IoIosArrowDown className='text-sm'/> */}
                                 <img src={downwardArrow} alt='downWardArrow' className=' h-6 w-6 font-bold'/>

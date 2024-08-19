@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom"
+import DetailLayoutSidebar from "../components/skillDetails/DetailLayoutSidebar"
 
 
 
@@ -9,7 +10,9 @@ const DetailLayout = () => {
       <div className=" lg:mt-0 lg:grid grid- grid-cols-8 w-full bg-detailSectionBgNav "> 
         {/* divding the page into 8 colms and giving the first col to the first div for the navigation and second give for displaying the content */}
         {/* @first_div */}
-        <div className="lg:block hidden border-r-[1px] border-gray-500/75">Someting1</div>
+        <div className="lg:block hidden border-r-[1px] border-gray-500/75">
+          <DetailLayoutSidebar/>
+        </div>
 
         {/* @second_div */}
         {/* expanding the second give to the 7 col, so inshort taking all the available space.  */}
