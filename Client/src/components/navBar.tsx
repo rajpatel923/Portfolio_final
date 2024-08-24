@@ -5,34 +5,46 @@ import  downwardArrow from "../assets/downArrow.svg"
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
 import mailSvg from "../assets/mail.svg"
-import {Link} from 'react-router-dom'
+import { Link, NavLink} from 'react-router-dom'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
+gsap.registerPlugin(useGSAP)
 
 function NavBar() {
+
+
     const [exploreSectionVisible,setExploreSectionVisible] = useState(false)
+
+    
 
     const onExploreButtonClickHandler =()=>{
         setExploreSectionVisible(!exploreSectionVisible)
+        gsap.to("#downwardArrow",{
+            rotate: exploreSectionVisible ? 180 : 0,
+            duration: 0.3,
+            ease: "power2.inOut"
+        })
     }
   return (
     <>
         <div className='bg-primary_bg px-4 lg:px-8 z-[100]'>
             <div className=' flex h-[80px] w-full justify-between py-2'>
                 <div className=' flex items-center justify-between w-full lg:w-fit'> {/*left side things wrapper*/}
-                    <Link to={'/'}>
+                    <NavLink to={'/'}>
                         <div className=' flex items-center gap-4'> {/*profile and Name wrapper*/}                  
                                 <img src='https://res.cloudinary.com/slientcoder/image/upload/v1723097299/qp38yuuonswyuzojkorb.jpg' alt='profilePicture' className=' w-12 h-12 lg:w-12 lg:h-12 rounded-full object-cover border-[1px] border-blue-400/90 '></img>         
                             <div className=' pr-4 mr-4'>
                                 <h3 className=' text-lg font-bold lg:text-2xl'>PATEL RAJ</h3>
                             </div>
                         </div>
-                    </Link>
+                    </NavLink>
                     <div className='relative'> {/*Explore things drop down menu*/}
                         <div className=''>
                             <button className={` flex items-center justify-between gap-2 bg-neutral-700 border-[0.1px] border-neutral-500/80 shadow-sm hover:bg-gray-500/30 hover:text-white px-4 py-1 rounded-full text-sm  ${exploreSectionVisible? 'text-white bg-gray-500/30 ': ''}`} onClick={onExploreButtonClickHandler}>
                                 <p className=' text-sm lg:text-lg'>Explore</p>
                                 {/* <IoIosArrowDown className='text-sm'/> */}
-                                <img src={downwardArrow} alt='downWardArrow' className=' h-6 w-6 font-bold'/>
+                                <img src={downwardArrow} alt='downWardArrow' id='downwardArrow' className=' h-6 w-6 font-bold'/>
                             </button>
                         </div>
                         {

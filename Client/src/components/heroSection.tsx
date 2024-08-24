@@ -15,6 +15,7 @@ interface heroSectionProps{
 function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHeadingThree}:heroSectionProps) {
     
     const splitter = new splitType("#welcome_text", {types: "chars"})
+    //todo change the text -> spans for each character -> map throught all using gsap
     const owner = splitter.chars
 
     useGSAP(()=>{
