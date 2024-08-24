@@ -1,6 +1,11 @@
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
 import {Link} from 'react-router-dom'
+import {useGSAP} from '@gsap/react'
+import gsap from "gsap"
+import splitType from 'split-type'
+
+
 interface heroSectionProps{
     heroSectionHeadingTwo?:string;
     heroSectionHeadingThree?:string;
@@ -8,6 +13,25 @@ interface heroSectionProps{
 }
 
 function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHeadingThree}:heroSectionProps) {
+    
+    const splitter = new splitType("#welcome_text", {types: "chars"})
+    const owner = splitter.chars
+
+    useGSAP(()=>{
+        gsap.to("#welcome_anim_line", {
+            duration: 1,
+            opacity: 1,
+            repeat:-1,
+            ease: "power1.inOut"
+        })
+        gsap.to(splitter.chars, {
+            stagger:{
+                amount:0.1
+            },
+            duration:2
+        })
+        
+    }, [])
   return (
     <>
         <div className="flex justify-center w-full items-cente my-32">
@@ -15,7 +39,8 @@ function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHea
                 <div className='flex flex-col items-center lg:flex-row justify-between place-items-start pb-20'> {/* This will have flex-2 that will have text on left and options on the right */}
                     <div className='basis-1/3 flex flex-col items-center text-center lg:items-start  lg:text-start lg:basis-2/3'> {/* Col on the left */}
                         <div>
-                            <p className='text-lg lg:text-xl text-[#b9dafb]'>{heroSectionHeadingOne ?heroSectionHeadingOne: "Welcome my name is...|"}</p>
+                            <span className='text-lg lg:text-xl text-[#b9dafb] opacity-0' id="welcome_text">{heroSectionHeadingOne ?heroSectionHeadingOne: "Welcome my name is..."}</span>
+                            <span id="welcome_anim_line" className="opacity-0 font-[1000] text-2xl">|</span>
                         </div>
 
                         <div className=' mt-4'>
