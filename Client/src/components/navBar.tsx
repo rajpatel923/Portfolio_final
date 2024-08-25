@@ -49,28 +49,28 @@ function NavBar() {
                         </div>
                         {
                             exploreSectionVisible && (
-                            <div className={` absolute z-10 mt-2 w-48 right-0 lg:left-0 text-left rounded-md bg-primary_bg text-white shadow-lg ring-1 ring-black ring-opacity-5 `}>
+                            <div className={` absolute z-10 mt-2 w-48 right-0 lg:left-0 text-left rounded-md bg-primary_bg text-white shadow-lg ring-1 ring-black ring-opacity-5  `}>
                                 <div className='py-1'>
-                                    <Link to="/aboutme" onClick={onExploreButtonClickHandler} className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/aboutme" onClick={onExploreButtonClickHandler} className=' flex px-4 py-2 text-sm hover:bg-gray-600 transition-colors duration-[0.5s] rounded-lg'>
                                         <img src={aboutSvg} alt='aboutsvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>About</span>
                                     </Link>
 
-                                    <Link to="/projects" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/projects" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm hover:bg-gray-600 transition-colors duration-[0.5s] rounded-lg'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                        <span className='pl-4 text-sm'>Projects</span>
                                     </Link>
 
-                                    <Link to="/articles" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                    <Link to="/articles" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm  hover:bg-gray-600 transition-colors duration-[0.5s] rounded-lg'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Articles</span>
                                     </Link>
 
-                                    <Link to="/skills" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm hover:bg-gray-600'>
+                                    <Link to="/skills" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm hover:bg-gray-600 transition-colors duration-[0.5s] rounded-lg'>
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Skills</span>
                                     </Link>
-                                    <Link to="/contact" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                                    <Link to="/contact" onClick={onExploreButtonClickHandler} className='flex px-4 py-2 text-sm  hover:bg-gray-600 transition-colors duration-[0.5s] rounded-lg'>
                                         <img src={mailSvg} alt='mailSvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Contact</span>
                                     </Link>
@@ -91,7 +91,7 @@ function NavBar() {
 
                         <div> {/*contact me button*/}
                             <Link to={'/contact'}>
-                                 <Button className=' lg:block bg-blue-400 text-whitefont-bold px-2 py-1 rounded-md text-sm'>Contact Me</Button>
+                                 <Button className=' lg:block bg-blue-400 text-whitefont-bold px-2 py-1 rounded-md text-sm hover:bg-transparent hover:border hover:border-white hover:px-3 hover:py-2'>Contact Me</Button>
                             </Link>
                         </div>
                 </div>

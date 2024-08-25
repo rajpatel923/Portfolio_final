@@ -1,37 +1,41 @@
 import aboutSvg from "../assets/about.svg"
 import folderSvg from "../assets/projects.svg"
 import {Link} from 'react-router-dom'
-import {useGSAP} from '@gsap/react'
 import gsap from "gsap"
-import splitType from 'split-type'
+import { useEffect } from "react"
+
+
 
 
 interface heroSectionProps{
     heroSectionHeadingTwo?:string;
     heroSectionHeadingThree?:string;
-    heroSectionHeadingOne?:string;
+    heroSectionHeadingOne:string;
 }
 
 function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHeadingThree}:heroSectionProps) {
     
-    const splitter = new splitType("#welcome_text", {types: "chars"})
-    //todo change the text -> spans for each character -> map throught all using gsap
-    const owner = splitter.chars
+   const welcomeText:string[] = heroSectionHeadingOne.split("")
 
-    useGSAP(()=>{
+    useEffect(()=>{
         gsap.to("#welcome_anim_line", {
-            duration: 1,
+            duration: 0.5,
             opacity: 1,
             repeat:-1,
-            ease: "power1.inOut"
+            ease: "power1.inOut",
+        }),
+        gsap.fromTo("#welcome_char",{
+            width: "0px",
+            opacity: 0
+        },{
+            opacity:1,
+            stagger: 0.2,
+            duration: 1,
+            width: `fit-content`,
+            repeat: -1,
+            yoyo:true,
+            delay: 0.5
         })
-        gsap.to(splitter.chars, {
-            stagger:{
-                amount:0.1
-            },
-            duration:2
-        })
-        
     }, [])
   return (
     <>
@@ -40,8 +44,17 @@ function HeroSection({heroSectionHeadingOne,heroSectionHeadingTwo,heroSectionHea
                 <div className='flex flex-col items-center lg:flex-row justify-between place-items-start pb-20'> {/* This will have flex-2 that will have text on left and options on the right */}
                     <div className='basis-1/3 flex flex-col items-center text-center lg:items-start  lg:text-start lg:basis-2/3'> {/* Col on the left */}
                         <div>
-                            <span className='text-lg lg:text-xl text-[#b9dafb] opacity-0' id="welcome_text">{heroSectionHeadingOne ?heroSectionHeadingOne: "Welcome my name is..."}</span>
-                            <span id="welcome_anim_line" className="opacity-0 font-[1000] text-2xl">|</span>
+                            <h4 className='text-lg lg:text-xl text-[#b9dafb] inline-block' id="welcome_text">
+                                {   welcomeText.length > 0 ? (
+                                        welcomeText.map((char: string, index: number) => (
+                                        <span key={index} className="inline-block target" id="welcome_char">{char}</span>
+                                        ))
+                                    ) : (
+                                        <span></span>
+                                    )
+                                }
+                                <span id="welcome_anim_line" className="opacity-0 font-[1000] text-2xl">|</span>
+                            </h4>
                         </div>
 
                         <div className=' mt-4'>

@@ -13,7 +13,6 @@ const Contact = () => {
   const {register, handleSubmit, formState: {errors, isSubmitting},reset} = useForm<contactMeForm>()
   const inputStyle = "appearance-none shadow leading-tight focus:outline-none focus:shadow-outline px-4 py-2 border rounded-lg text-black"
   
-  //TODO send post request to the server for handling the contact
   const onSubmit: SubmitHandler<contactMeForm> = async(data)=> {
     axios.post("/api/v1/contactMe/sendMail",{
       ...data

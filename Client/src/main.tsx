@@ -22,7 +22,6 @@ import Contact from './components/contact.tsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout/>}>
-      <Route path='*' element={<Error/>}/>
       <Route path='/' element={<Home/>}/>
       <Route path='' element={<DetailLayout/>}>
           <Route path='/aboutme' element={<AboutMe/>}/>
@@ -32,6 +31,7 @@ const router = createBrowserRouter(
           <Route path='projects/:projects' element={<ProjectsDetail/>}/>
       </Route>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='*' element={<Error/>}/>
     </Route>
     
   )

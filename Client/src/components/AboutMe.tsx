@@ -97,7 +97,6 @@ const AboutMe = () => {
         <div className="lg:ml-10 m-10 mt-8 mb-24">
           <SpecializeFields/>
         </div>
-
     </div>
   )
 }

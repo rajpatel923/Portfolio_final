@@ -1,5 +1,5 @@
 import { GrHomeRounded } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import folderSvg from "../../assets/projects.svg"
 import aboutSvg from "../../assets/about.svg"
 import mailSvg from "../../assets/mail.svg"
@@ -22,23 +22,26 @@ function DetailLayoutSidebar() {
             <div className="flex flex-col gap-2 w-full">
                 <h5 className="font-light text-grayish_black px-4">Folder</h5>
                 <ul>
-                    <li className=" hover:bg-gray-600">
-                        <Link to="/projects"  className='flex py-2 text-sm px-4'>
+                    <li className=" hover:bg-gray-600 transition-color duration-[0.5s]">
+                        <NavLink to="/projects"  className={ ({isActive})=> `flex py-2 text-sm px-4 
+                                                ${isActive ? "bg-gray-600" : ""} `}  >
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                        <span className='pl-4 text-sm'>Projects</span>
-                        </Link>                
+                        </NavLink>                
                     </li>
-                    <li className=" hover:bg-gray-600">
-                        <Link to="/articles"  className='flex py-2 text-sm px-4'>
+                    <li className=" hover:bg-gray-600 transition-color duration-[0.5s]">
+                        <NavLink to="/articles"   className={ ({isActive})=> `flex py-2 text-sm px-4 
+                                                ${isActive ? "bg-gray-600" : ""} `} >
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Articles</span>
-                        </Link>
+                        </NavLink>
                     </li>
-                    <li className=" hover:bg-gray-600">
-                        <Link to="/skills"  className='flex  py-2 text-sm px-4'>
+                    <li className=" hover:bg-gray-600 transition-color duration-[0.5s]">
+                        <NavLink to="/skills"   className={ ({isActive})=> `flex py-2 text-sm px-4 
+                                                ${isActive ? "bg-gray-600" : ""} `} >
                                         <img src={folderSvg} about='folderSvfg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Skills</span>
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </div>
@@ -46,11 +49,12 @@ function DetailLayoutSidebar() {
             <div className="flex flex-col gap-2 w-full">
                 <h5 className='font-light text-grayish_black px-4'>Files</h5>
                 <ul >
-                    <li className=" hover:bg-gray-600">
-                        <Link to="/aboutme" className=' flex px-4 py-2 text-sm hover:bg-gray-600'>
+                    <li className=" hover:bg-gray-600 transition-color duration-[0.5s]">
+                        <NavLink to="/aboutme"className={ ({isActive})=> `flex py-2 text-sm px-4 
+                                                ${isActive ? "bg-gray-600" : ""} `}>
                                         <img src={aboutSvg} alt='aboutsvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>About</span>
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </div>
@@ -58,11 +62,12 @@ function DetailLayoutSidebar() {
             <div className="flex flex-col gap-2 w-full">
                 <h5 className='font-light text-grayish_black px-4'>Contact</h5>
                 <ul>
-                    <li className=" hover:bg-gray-600">
-                        <Link to="/contact"  className='flex px-4 py-2 text-sm  hover:bg-gray-600'>
+                    <li className=" hover:bg-gray-600 transition-color duration-[0.5s]">
+                        <NavLink to="/contact"  className={ ({isActive})=> `flex py-2 text-sm px-4 
+                                                ${isActive ? "bg-gray-600" : ""} `}>
                                         <img src={mailSvg} alt='mailSvg' className='w-5 h-5'/>
                                         <span className='pl-4 text-sm'>Contact</span>
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </div>

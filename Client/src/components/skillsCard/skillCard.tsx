@@ -5,7 +5,7 @@ interface CardProps{
   profile?:boolean
 }
 
-// TODO get the pors of imageString URL and bg color of the container and also the image tag caption.
+
 const Card:React.FC<CardProps> = ({skillImage, skillTitle,bgCoustomeColor, profile}) =>{
   return (
     <div>
