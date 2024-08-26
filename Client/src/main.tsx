@@ -18,21 +18,25 @@ import SkillDetail from './components/skillDetails/skillsDetails.tsx';
 import Projects from './components/projects.tsx';
 import ProjectsDetail from './components/skillDetails/projectsDetails.tsx';
 import Contact from './components/contact.tsx';
+import AdminLayout from './layouts/AdminLayout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<RootLayout/>}>
-      <Route path='/' element={<Home/>}/>
-      <Route path='' element={<DetailLayout/>}>
-          <Route path='/aboutme' element={<AboutMe/>}/>
-          <Route path='skills' element={<Skills/>}/>
-          <Route path='skills/:skillTitle' element={<SkillDetail/>}/>
-          <Route path='/projects' element={<Projects/>}/>
-          <Route path='projects/:projects' element={<ProjectsDetail/>}/>
+   <Route>
+      <Route path='/' element={<RootLayout/>}>
+        <Route path='/' element={<Home/>}/>
+        <Route path='' element={<DetailLayout/>}>
+            <Route path='/aboutme' element={<AboutMe/>}/>
+            <Route path='skills' element={<Skills/>}/>
+            <Route path='skills/:skillTitle' element={<SkillDetail/>}/>
+            <Route path='/projects' element={<Projects/>}/>
+            <Route path='projects/:projects' element={<ProjectsDetail/>}/>
+        </Route>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='*' element={<Error/>}/>
       </Route>
-      <Route path='/contact' element={<Contact/>}/>
-      <Route path='*' element={<Error/>}/>
-    </Route>
+      <Route path="/admin/dashboard" element={<AdminLayout/>}/>
+   </Route>
     
   )
 )
