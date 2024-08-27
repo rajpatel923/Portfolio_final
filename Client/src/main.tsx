@@ -19,6 +19,7 @@ import Projects from './components/projects.tsx';
 import ProjectsDetail from './components/skillDetails/projectsDetails.tsx';
 import Contact from './components/contact.tsx';
 import AdminLayout from './layouts/AdminLayout.tsx';
+import AdminLogin from './components/AdminComponents/AdminLogin.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,7 +36,9 @@ const router = createBrowserRouter(
         <Route path='/contact' element={<Contact/>}/>
         <Route path='*' element={<Error/>}/>
       </Route>
-      <Route path="/admin/dashboard" element={<AdminLayout/>}/>
+      <Route path="" element={<AdminLayout/>}>
+        <Route path='/admin/dashboard/login' element={<AdminLogin/>}/>
+      </Route>
    </Route>
     
   )
