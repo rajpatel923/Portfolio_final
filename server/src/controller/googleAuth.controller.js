@@ -4,16 +4,11 @@ import { User } from "../models/User.model.js";
 
 const loginSucess = asyncHandler(async (req, res) => {
   if (req.user) {
-    console.log(req.user);
     const findUser = await User.findOne({ email: req.user.email });
     if (findUser) {
-      return res.status(200).json({
-        status: true,
-        message: "Login Successful",
-        username: findUser?.firstname + " " + findUser?.lastname,
-        user_image: findUser?.user_image,
-        auth: "google",
-      });
+      //todo below code finds the user and send the info to the fontend
+      //todo to send infomation to the frontend, send it with token with cookie or in the header
+      res.redirect(`${process.env.FRONTEND_HOME_PAGE}admin/dashboard`);
     }
   } else {
     throw new Error("Something when wrong!");

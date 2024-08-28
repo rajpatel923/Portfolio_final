@@ -3,6 +3,7 @@ import about_me_downarrow from '../assets/about_me_downarrow.svg'
 import SpecializeFields from '../components/aboutMe/specializeFields'
 import axios from 'axios'
 
+
 const AboutMe = () => {
 
   const initialState = {
@@ -14,14 +15,21 @@ const AboutMe = () => {
   };
 
   const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState(initialState)
+  const [loading, setLoading] = useState<boolean>()
 
   useEffect(()=>{
+    setLoading(true)
     axios.get("/api/v1/users/aboutMe").then(aboutMeContent=>{
       setaboutMeContentFromDbs(aboutMeContent.data.data)
     }).catch((err)=>{
       console.log(err)
+    }).finally(()=>{
+      setLoading(false)
     })
   },[])
+  if(loading){
+    return <h1>Is loading</h1>
+  }
   
 
   

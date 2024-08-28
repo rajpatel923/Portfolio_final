@@ -24,7 +24,7 @@ app.use(
       mongoUrl: process.env.MONGODB_URL,
       ttl: 12 * 60 * 60,
     }),
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 12 * 60 * 60 * 1000 },
   })
 );
 
@@ -42,8 +42,10 @@ app.use(express.static("public")); //for storing files and anything into local s
 import userRouter from "./routes/skills.routes.js";
 import contactRouter from "./routes/contact.routes.js";
 import { googleRouter } from "./routes/google.routes.js";
+import { userRouter2 } from "./routes/user.routes.js";
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/contactMe", contactRouter);
 app.use("/", googleRouter);
+app.use("/api/v1", userRouter2);
 
 export { app };

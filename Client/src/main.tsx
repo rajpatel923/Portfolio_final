@@ -20,6 +20,8 @@ import ProjectsDetail from './components/skillDetails/projectsDetails.tsx';
 import Contact from './components/contact.tsx';
 import AdminLayout from './layouts/AdminLayout.tsx';
 import AdminLogin from './components/AdminComponents/AdminLogin.tsx';
+import AdminDashboard from './components/AdminComponents/AdminDashboard.tsx';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +40,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="" element={<AdminLayout/>}>
         <Route path='/admin/dashboard/login' element={<AdminLogin/>}/>
+        //todo:- anything inside below this code need authentication !!
+        <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
       </Route>
    </Route>
     

@@ -21,8 +21,9 @@ function Skills() {
   ];
 
   const [skills, setSkills] = useState<Skills[]>(initializeDataType);
-
+  const [loading, setLoading] = useState<boolean>()
   useEffect(() => {
+    setLoading(true)
     axios.get("/api/v1/users/getSkillTitle")
       .then((response) => {
         // Assuming response.data.data is an array
@@ -31,9 +32,17 @@ function Skills() {
         }
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error);
       });
+    setLoading(false)
   }, []);
+
+
+  if(loading){
+    console.log("is loading")
+    return <h1>Is loading</h1>
+  }
 
   return (
     <div className=" mx-12 my-12">
@@ -41,7 +50,7 @@ function Skills() {
         <h1 className="md:text-5xl text-4xl font-bold mb-4">Skills</h1>
         <p className=" max-w-[400px] p-2 mb-8 text-grayish_black ">Here are some of my favorite skills I use everyday to complete my work.</p>
       </div>
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {
           skills.map((skill)=>{
             return <Link key={skill._id} to={`/skills/${skill.skillTitle}`}>

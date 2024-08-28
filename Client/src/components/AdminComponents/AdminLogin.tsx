@@ -1,9 +1,17 @@
-import { FaGoogle, FaApple } from 'react-icons/fa';
+import { FaGoogle, FaGithub } from 'react-icons/fa';
+
+
+
+async function googleAuthentication() {
+  const baseURL = import.meta.env.VITE_BACKEND_URL
+    window.location.href = `${baseURL}/auth/google`;
+}
 
 const AdminLogin = () => {
+  
   return (
-    <div className="h-full w-full p-10 grid grid-cols-2 bg-gray-900 text-zinc-200">
-        <div className=" overflow-hidden border-none rounded-lg mx-4 my-2">
+    <div className="h-full w-full p-10 grid grid-cols-1 lg:grid-cols-2 bg-gray-900 text-zinc-200">
+        <div className=" overflow-hidden border-none rounded-lg mx-4 my-2 hidden lg:block">
                 <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="object-fill blur-[1.5px]" alt="loginHeroImage"></img>
         </div>
 
@@ -100,6 +108,7 @@ const AdminLogin = () => {
           <button
             type="button"
             className="w-full flex justify-center items-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600"
+            onClick={googleAuthentication}
           >
             <FaGoogle className="mr-2" /> Google
           </button>
@@ -107,7 +116,7 @@ const AdminLogin = () => {
             type="button"
             className="w-full flex justify-center items-center bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-600"
           >
-            <FaApple className="mr-2" /> Apple
+            <FaGithub className="mr-2" /> Github
           </button>
         </div>
       </div>

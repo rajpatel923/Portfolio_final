@@ -37,7 +37,7 @@ const SkillDetail = () => {
     })
   },[skillTitleFromProps]);
   return (
-    <div className='bg-detailSectionBgHero'>
+    <div className='bg-detailSectionBgHero mb-20'>
       <Link to={'/skills'}>
         <div className=' flex w-fit gap-2 items-center mt-10 text-zinc-300 font-medium ml-6'>
           <FaLongArrowAltLeft className='font-thin mr-3'/>
@@ -71,9 +71,7 @@ const SkillDetail = () => {
           
           {skills.whyIlike}
         </p>
-
       </div>
-      
     </div>
   )
 }

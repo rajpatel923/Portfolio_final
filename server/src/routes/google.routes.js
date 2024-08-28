@@ -1,7 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { AuthenticateUser } from "../middlerware/passport.Auth.middleware.js";
-("../middlerware/passport.Auth.middleware.js");
+
 const googleRouter = express.Router();
 
 import {

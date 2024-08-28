@@ -16,7 +16,6 @@ passport.use(
       try {
         const data = profile?._json;
         const user = await User.findOne({ email: data.email });
-
         if (!user) {
           const newUser = await User.create({
             firstname: data.given_name,
