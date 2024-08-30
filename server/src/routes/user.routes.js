@@ -2,9 +2,9 @@ import epxress from "express";
 import { AuthenticateUser } from "../middlerware/passport.Auth.middleware.js";
 ("../middlerware/passport.Auth.middleware.js");
 
-const userRouter2 = epxress.Router();
+const AdminRouter = epxress.Router();
 
-userRouter2.route("/api/user").get((req, res) => {
+AdminRouter.route("/api/user").get((req, res) => {
   if (req.isAuthenticated()) {
     res.json(req.user);
   } else {
@@ -12,4 +12,4 @@ userRouter2.route("/api/user").get((req, res) => {
   }
 });
 
-export { userRouter2 };
+export { AdminRouter };

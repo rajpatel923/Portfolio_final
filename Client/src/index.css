@@ -2,12 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-main{
-    overflow: auto;
-
+main {
+  overflow: auto;
 }
 /* #container_display{
     overflow-y: auto;
     max-height: 590px;
     
 } */
+
+/* Custom background particle effect */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before,
+.hero-section::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-section::before {
+  top: 10%;
+  left: 20%;
+  animation-duration: 8s;
+}
+
+.hero-section::after {
+  bottom: 10%;
+  right: 20%;
+  animation-duration: 10s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}

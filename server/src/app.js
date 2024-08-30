@@ -42,10 +42,10 @@ app.use(express.static("public")); //for storing files and anything into local s
 import userRouter from "./routes/skills.routes.js";
 import contactRouter from "./routes/contact.routes.js";
 import { googleRouter } from "./routes/google.routes.js";
-import { userRouter2 } from "./routes/user.routes.js";
+import { AdminRouter } from "./routes/user.routes.js";
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/contactMe", contactRouter);
 app.use("/", googleRouter);
-app.use("/api/v1", userRouter2);
+app.use("/api/v1", AdminRouter);
 
 export { app };

@@ -14,27 +14,6 @@ const AdminLogin = () => {
         <div className=" overflow-hidden border-none rounded-lg mx-4 my-2 hidden lg:block">
                 <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=3456&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="object-fill blur-[1.5px]" alt="loginHeroImage"></img>
         </div>
-
-        {/* <div className="mx-4 my-2 flex h-full flex-col items-center w-full">
-            <div className=" mt-24">
-                <h1 className=" text-6xl font-semibold">Create an account</h1>
-                <h5 className="mt-4 font-mono">Already have an account? <span className="text-purple-600 underline">Login</span></h5>
-            </div>
-            <form className="mt-12 mx-10">
-                <div>
-                    <h1>firstname</h1>
-                    <h1>lastname</h1>
-                </div>
-                <h1>email</h1>
-                <h1>password</h1>
-                <button>Create an account</button>
-            </form>
-            <div>Line or register using line </div>
-            <div>
-                <h1>Google</h1>
-                <h1>Apple</h1>
-            </div>
-        </div> */}
         <div className="flex items-center justify-center">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-3xl font-bold mb-6">Create an account</h2>
