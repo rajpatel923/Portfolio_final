@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Card from "./skillsCard/skillCard"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
 
 interface Projects{
   projectImage:[string],
@@ -19,8 +20,10 @@ const Projects = () => {
   ];
    
   const [projects, setProjects] = useState<Projects[]>(initializeDataType)
+  const [loading, setLoading] = useState<boolean>()
 
   useEffect(() => {
+    setLoading(true)
     axios.get("/api/v1/users/getProjectsName")
       .then((response) => {
         // Assuming response.data.data is an array
@@ -30,8 +33,14 @@ const Projects = () => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }).finally(()=>{
+        setLoading(false)
+      })
   }, []);
+
+  if(loading){
+    return <Loader/>
+  }
 
   return (
     <div className=" mx-12 my-12">

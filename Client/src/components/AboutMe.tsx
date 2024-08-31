@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import about_me_downarrow from '../assets/about_me_downarrow.svg'
 import SpecializeFields from '../components/aboutMe/specializeFields'
 import axios from 'axios'
+import Loader from './Loader'
 
 
 const AboutMe = () => {
@@ -28,7 +29,7 @@ const AboutMe = () => {
     })
   },[])
   if(loading){
-    return <h1>Is loading</h1>
+    return <Loader/>
   }
   
 
@@ -103,7 +104,7 @@ const AboutMe = () => {
 
         {/* lg:ml-10 m-10  mt-4 is use to move the specializeFields container move to the left so that it can aline to the conetent above. */}
         <div className="lg:ml-10 m-10 mt-8 mb-24">
-          <SpecializeFields/>
+          <SpecializeFields setLoading={()=> setLoading(false)}/>
         </div>
     </div>
   )

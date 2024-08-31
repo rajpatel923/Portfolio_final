@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import web_dev from '../../assets/web_dev.svg'
 import axios from 'axios'
 
+interface SpecializeFieldsProps{
+  setLoading: ()=> void,
+}
 
-function SpecializeFields() {
+function SpecializeFields({setLoading}:SpecializeFieldsProps) {
   const initializeDataType = [
     {
       "fieldTitle":'',
@@ -18,8 +21,10 @@ function SpecializeFields() {
       setspecializedFields(data.data.data)
     }).catch((err)=>{
       console.log(err)
+    }).finally(()=>{
+      setLoading()
     })
-  }, [])
+  }, [setLoading])
   return (
     <div className='mt-[6%]'>
       <div>

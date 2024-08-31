@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const AdminLayout = () => {
   return (
-    <div className='h-screen w-full bg-white'>
+    <div className='h-full w-full bg-detailSectionBgHero'>
       <Outlet/>
     </div>
   )

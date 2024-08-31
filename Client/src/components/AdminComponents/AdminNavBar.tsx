@@ -14,21 +14,21 @@ const AdminNavbar = ({user_image}:AdminNavBarProps) => {
     };
 
     return (
-        <nav className="bg-gray-800 p-4">
+        <nav className="bg-primary_bg p-4 h-[6vh] min-h-[60px]">
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                    <img src={`${user_image}`} alt="Logo" className="h-8 w-8 mr-2" />
+                    <img src={`${user_image}`} alt="Logo" className="h-8 w-8 mr-2 border border-none rounded-full" />
                     <span className="text-white font-bold text-xl">Admin Panel</span>
                 </div>
-                <div className="block md:hidden">
+                <div className="block lg:hidden">
                     <button onClick={toggleMenu} className="text-white">
                         {isOpen ? <FaTimes /> : <FaBars />}
                     </button>
                 </div>
                 <ul
-                    className={`fixed top-0 right-0 h-full w-64 bg-gray-900 p-8 text-white transition-transform transform ${
-                        isOpen ? 'translate-x-0' : 'translate-x-full'
-                    } md:static md:flex md:flex-row md:items-center md:space-x-4 md:bg-transparent md:translate-x-0 md:p-0 md:h-auto md:w-auto gap-4`}
+                    className={`fixed top-0 right-0 h-full w-64 bg-primary_bg p-8 text-white transition-transform transform ${
+                        isOpen ? 'translate-x-0 duration-[0.5s]' : 'translate-x-full duration-[0.5s]'
+                    } lg:static lg:flex lg:flex-row lg:items-center lg:space-x-4 lg:bg-transparent lg:translate-x-0 lg:p-0 lg:h-auto lg:w-auto gap-7`}
                 >
                     <li className="flex items-center space-x-2">
                         <FaUserEdit />
@@ -55,7 +55,7 @@ const AdminNavbar = ({user_image}:AdminNavBarProps) => {
                     <button onClick={toggleMenu} className="text-white lg:hidden" >
                         {isOpen ? <FaTimes /> : <FaBars />}
                     </button>
-                    
+
                 </ul>
             </div>
         </nav>

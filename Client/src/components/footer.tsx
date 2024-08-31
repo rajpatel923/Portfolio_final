@@ -35,7 +35,7 @@ function Footer() {
                 </NavLink>
                 <NavLink to={resumeUrl} target="_blank" >
                     <div className="bg-neutral-800 border rounded-lg border-none py-1">
-                        <IoDocumentTextOutline className=' w-8 h-8 mx-1 text-[#75baff]'/>
+                        <IoDocumentTextOutline className=' w-8 h-8 mx-1 text-icon_color'/>
                     </div>
                 </NavLink>
             </div>

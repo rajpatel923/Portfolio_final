@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import Loader from '../Loader';
 
 
 interface SkilsDetailProps{
@@ -16,6 +17,7 @@ interface SkilsDetailProps{
 }
 
 const SkillDetail = () => {
+  const [loading, setLoading] = useState<boolean>(true)
   const skillTitleFromProps = useParams()
   const initializeDataType:SkilsDetailProps = {
     skillImage:"",
@@ -28,14 +30,22 @@ const SkillDetail = () => {
   }
   const [skills, setSkills] = useState<SkilsDetailProps>(initializeDataType)
   useEffect(()=>{
+    setLoading(true)
     axios.get("/api/v1/users/getSkillDetail",{params: {skillTitle:skillTitleFromProps }}).then((response)=>{
       if(response.data && response.data.data[0]){
         setSkills(response.data.data[0])
       }
     }).catch((error)=>{
       console.log(error)
+    }).finally(()=>{
+      setLoading(false)
     })
   },[skillTitleFromProps]);
+
+  if(loading){
+    return <Loader/>
+  }
+
   return (
     <div className='bg-detailSectionBgHero mb-20'>
       <Link to={'/skills'}>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Card from "./skillsCard/skillCard"
 import axios from "axios"
 import { Link} from "react-router-dom";
+import Loader from "./Loader";
 
 interface Skills{
   skillImage: string;
@@ -32,16 +33,16 @@ function Skills() {
         }
       })
       .catch((error) => {
-        setLoading(false)
         console.log(error);
-      });
-    setLoading(false)
+      }).finally(()=>{
+        setLoading(false)
+      })
+    
   }, []);
 
 
   if(loading){
-    console.log("is loading")
-    return <h1>Is loading</h1>
+    return <Loader/>
   }
 
   return (

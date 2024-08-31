@@ -3,14 +3,15 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { FaLongArrowAltLeft } from 'react-icons/fa'
 import { useParams, Link } from 'react-router-dom'
+import Loader from '../Loader'
 interface ProjectDetailProps{
   title:string,
   description:string,
-  relatedSkills:[string],
+  relatedSkills:string[],
   category:string,
   completedDate:string,
   link:string,
-  projectImage:[string],
+  projectImage:string[],
   problemDesp:string,
   problemImage:string,
   solutionDesp:string,
@@ -19,15 +20,16 @@ interface ProjectDetailProps{
   resultImage:string
 }
 const ProjectsDetail = () => {
+  const [loading, setLoading] = useState<boolean>()
   const {projects} = useParams()
   const initializeDataType:ProjectDetailProps={
     title:"",
     description:"",
-    relatedSkills:[""],
+    relatedSkills:[],
     category:"",
     completedDate:"",
     link:"",
-    projectImage:[""],
+    projectImage:[],
     problemDesp:"",
     problemImage:"",
     solutionDesp:"",
@@ -38,18 +40,24 @@ const ProjectsDetail = () => {
   const [project, setProject] = useState(initializeDataType)
   
   useEffect(()=>{
+    setLoading(true)
     axios.get("/api/v1/users/getProjectDetails", {params: {
       projectTitle: projects
     }}).then((response)=>{
       if(response.data && response.data.data){
         setProject(response.data.data[0])
       }
-      console.log(project)
     }).catch((error)=>{
       console.log(error)
+    }).finally(()=>{
+      setLoading(false)
     })
+  },[])
+  
+  if(loading){
+    return <Loader/>
+  }
 
-  },[projects, project])
   return (
     <div className='bg-detailSectionBgHero mb-20 lg:mt-0'>
       <Link to={'/projects'}>
