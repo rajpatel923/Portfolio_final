@@ -3,6 +3,7 @@ import about_me_downarrow from '../assets/about_me_downarrow.svg'
 import SpecializeFields from '../components/aboutMe/specializeFields'
 import axios from 'axios'
 import Loader from './Loader'
+import Skeleton from 'react-loading-skeleton'
 
 
 const AboutMe = () => {
@@ -17,6 +18,7 @@ const AboutMe = () => {
 
   const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState(initialState)
   const [loading, setLoading] = useState<boolean>()
+  const [imageLoading, setImageLoading] = useState<boolean>(false)
 
   useEffect(()=>{
     setLoading(true)
@@ -97,7 +99,14 @@ const AboutMe = () => {
 
               <div className=' flex mt-4 lg:justify-end w-full justify-center '>
                 {/* this is the div that content the image */}
-                <img src={aboutMeContentFromDbs.profileImage} className=' h-[500px] lg:h-[550px] object-fill w-[350] max-w-[600px] border-2 border-solid ' alt="profileImage"  />
+                {
+                  !imageLoading && (
+                    <div className='h-[500px] lg:h-[550px] w-[350px] max-w-[600px] bg-gray-300 animate-pulse border-2 border-solid'>
+                      <Skeleton/>
+                    </div>
+                  )
+                }
+                  <img src={aboutMeContentFromDbs.profileImage} onLoad={()=>setImageLoading(true)} className=' h-[500px] lg:h-[550px] object-fill w-[350] max-w-[600px] border-2 border-solid ' alt="profileImage"  />
               </div>
           </div>
         </div>

@@ -1,4 +1,6 @@
 import React, { useRef } from 'react'
+import axios from 'axios'
+import {useForm, SubmitHandler} from 'react-hook-form'
 
 interface ArticleBlogForm{
     title:string,
@@ -10,6 +12,22 @@ interface AddArticleBlogProps{
 }
 const AddArticleBlog: React.FC<AddArticleBlogProps> = ({onClose}) => {
     const articleFormRef = useRef<HTMLDivElement>(null)
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<ArticleBlogForm>();
+
+    const onSubmit: SubmitHandler<ArticleBlogForm> = async (formData)=>{
+        const formDataToSend = new FormData()
+        formDataToSend.append('title', formData.title)
+        formDataToSend.append('category', formData.category)
+        formDataToSend.append('blogDescription', formData.blogDescription)
+        try {
+            const res = await axios.post('/api/v1/addBlog', formDataToSend);
+            console.log(res);
+        } catch (error) {
+            // TODO: Add a toast notification to notify the user
+            console.log(error);
+        }
+        reset()
+    }
     const closeModel = (e:React.MouseEvent<HTMLDivElement>)=>{
         if(articleFormRef.current === e.target){
             onClose()
@@ -30,23 +48,24 @@ const AddArticleBlog: React.FC<AddArticleBlogProps> = ({onClose}) => {
                 </button>
                 <h1 className="text-center font-bold text-2xl mb-4">Edit the Blog</h1>
                 <p className="text-hidding_text mb-8 text-xl font-medium">Fill out the form and go ahead and submit!!</p>
-                <form className="flex flex-col gap-4 w-full">
+                <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit(onSubmit)}>
+                    {errors.title && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Blog Title"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type="text"
-                        required
+                        {...register("title", {required: "Tilte is required"})}
                     />
                     <input
                         placeholder="Category"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type='text'
-                        required
+                        {...register("category", {required: "Category is required"})}
                     />
                     <textarea
                         placeholder="Blog Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
+                        {...register("blogDescription", {required: "Blog Description is required"})}
                     />
                     <button type="submit" className="py-2 px-4 mx-auto rounded-md bg-white w-fit text-black">
                         Add Blog

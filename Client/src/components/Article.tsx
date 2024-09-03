@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ArticleList from './ArticleList/ArticleList'
+import axios from 'axios'
+import Loader from './Loader'
+
+interface Article{
+    title: string,
+    category: string,
+    date: string
+}
 
 const Article = () => {
+
+    const [articles, setArticles] = useState<Article[]>()
+    const [loading, setLoading] = useState<boolean>()
+
+    useEffect(()=>{
+        setLoading(true)
+        axios.get("/api/v1/getBlogs").then((response)=>{
+            if (response.data && response.data.data) {
+                setArticles(response.data.data);
+            }
+        }).catch((error) => {
+            console.log(error);
+          }).finally(()=>{
+            setLoading(false)
+        })
+    },[])
+
+    if(loading){
+        return <Loader/>
+    }
+
   return (
     <div>
         <div className=' hidden  h-[5vh] bg-primary_b lg:grid grid-cols-8 text-hidding_text'>
@@ -22,8 +51,13 @@ const Article = () => {
         </div>
 
         <div className='lg:flex flex-col gap-4 grid grid-cols-1'>
-            <ArticleList category='web development' date='12/12/2003' title='flex flex-col items-center text-center mt-1'/>
-            <ArticleList category='web development' date='12/12/2003' title='flex flex-col items-center text-center mt-1'/>
+            {/* <ArticleList category='web development' date='12/12/2003' title='flex flex-col items-center text-center mt-1'/>
+            <ArticleList category='web development' date='12/12/2003' title='flex flex-col items-center text-center mt-1'/> */}
+            {
+                articles?.map((blog)=>{
+                    return <ArticleList category={blog.category} date={blog.date} title={blog.title}/>
+                })
+            }
         </div>
         
     </div>

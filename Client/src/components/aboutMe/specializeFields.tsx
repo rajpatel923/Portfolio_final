@@ -29,7 +29,7 @@ function SpecializeFields({setLoading}:SpecializeFieldsProps) {
     <div className='mt-[6%]'>
       <div>
         <h2 className='text-3xl font-semibold text-white/9'>Specialized Fields</h2>
-        <p className='text-lg font-[500px] text-white/60 mt-[2%]'>Here are my specializations for web development.</p>
+        <p className='text-lg font-[500px] text-white/60 mt-[2%]'>Here are the specializations that I am truly passionate about!.</p>
       </div>
 
       <div className=' grid grid-cols-1 lg:grid-cols-2 mt-[4%] gap-10'>

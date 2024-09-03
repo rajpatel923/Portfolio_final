@@ -18,7 +18,7 @@ const addProjectData = asyncHandler(async (req, res) => {
   } = req.body;
 
   if (
-    [title, link, completedDate, category].some((field) => {
+    [title, link, category].some((field) => {
       return field?.trim() === "" || field === undefined;
     })
   ) {
@@ -40,7 +40,7 @@ const addProjectData = asyncHandler(async (req, res) => {
   }
   const projectImageLocalPathFirst = req.files?.projectImage[0]?.path;
 
-  const projectImageLocalPathSecond = req.files?.projectImage[1]?.path;
+  const projectImageLocalPathSecond = req.files?.projectImageBg[0]?.path;
 
   const problemImageLocalPath = req.files?.problemImage[0]?.path;
   const solutionImageLocalPath = req.files?.solutionImage[0]?.path;

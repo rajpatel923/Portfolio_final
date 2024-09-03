@@ -1,4 +1,6 @@
 import React, { useRef } from 'react'
+import axios from 'axios'
+import {useForm, SubmitHandler} from 'react-hook-form'
 
 interface AddProjectFormProps {
     onClose: () => void;
@@ -7,23 +9,64 @@ interface AddProjectFormProps {
 interface ProjectFormProps{
     title:string,
     description:string,
-    relatedSkills: string,
+    relatedSkills?: string,
     category:string,
-    completedDate: Date,
+    completedDate?: Date,
     link:string,
     problemDesp:string,
     solutionDesp:string,
     resultDesp:string,
-    projectImage:string,
-    problemImage:string,
-    solutionImage:string,
-    resultImage:string
+    projectImage:FileList,
+    projectImageBg:FileList,
+    problemImage:FileList,
+    solutionImage:FileList,
+    resultImage:FileList
 }
 const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
     const ProjectFromRef = useRef<HTMLDivElement>(null)
-    //const {register, handleSubmit, formState: {errors, isSubmitting},reset} = useForm<contactMeForm>()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<ProjectFormProps>();
     
+    const onSubmit: SubmitHandler<ProjectFormProps> = async (formData) => {
+        console.log(formData);
     
+        const formDataToSend = new FormData();
+        formDataToSend.append('title', formData.title);
+        formDataToSend.append('description', formData.description);
+        formDataToSend.append('category', formData.category);
+        formDataToSend.append('link', formData.link);
+        formDataToSend.append('problemDesp', formData.problemDesp);
+        formDataToSend.append('solutionDesp', formData.solutionDesp);
+        formDataToSend.append('resultDesp', formData.resultDesp);
+    
+        // Append the images
+        if (formData.projectImage[0]) {
+          formDataToSend.append('projectImage', formData.projectImage[0]);
+        }
+        if(formData.projectImageBg[0]){
+            formDataToSend.append('projectImageBg', formData.projectImageBg[0]);
+        }
+        if (formData.problemImage[0]) {
+          formDataToSend.append('problemImage', formData.problemImage[0]);
+        }
+        if (formData.solutionImage[0]) {
+          formDataToSend.append('solutionImage', formData.solutionImage[0]);
+        }
+        if (formData.resultImage[0]) {
+          formDataToSend.append('resultImage', formData.resultImage[0]);
+        }
+        try {
+            const res = await axios.post('/api/v1/users/projectData', formDataToSend, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
+            console.log(res);
+        } catch (error) {
+            // TODO: Add a toast notification to notify the user
+            console.log(error);
+          }
+        reset()
+    };
     const closeModel = (e:React.MouseEvent<HTMLDivElement>)=>{
         if(ProjectFromRef.current === e.target){
             onClose()
@@ -44,57 +87,82 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
                 </button>
                 <h1 className="text-center font-bold text-2xl mb-4">Add/Edit the Project</h1>
                 <p className="text-hidding_text mb-8 text-xl text-center font-medium">Fill out the form and go ahead and submit!!</p>
-                <form className="flex flex-col gap-4 w-full">
+                <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit(onSubmit)}>
+                    {errors.title && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Project title"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type="text"
-                        required
+                        {...register("title", {required: "Project Tilte is required"})}
                     />
+                    {errors.category && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Category"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type='text'
-                        required
+                        {...register("category", {required: "Category is required"})}
                     />
                     {/* //todo to input add skills section and adding it in to the string array */}
+                    {errors.link && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Project link"
                         type='text'
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
+                        {...register("link", {required: "Project link is required"})}
                     />
+                    {errors.description && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
                         placeholder="Project Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
+                        {...register("description", {required: "project description is required"})}
                     />
+                    {errors.problemDesp && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
                         placeholder="Problem Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
+                        {...register("problemDesp", {required: "problemDesp is required"})}
                     />
+                    {errors.solutionDesp && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
                         placeholder="Solution Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
+                        {...register("solutionDesp", {required: "solutionDesp is required"})}
                     />
+                    {errors.resultDesp && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
-                        placeholder="solution Description"
+                        placeholder="Result Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
+                        {...register("solutionDesp", {required: "solutionDesp is required"})}
                     />
 
                     {/* project images */}
+                    
                     <div className='flex flex-col gap-2'>
                         <label className='text-hidding_text text-xl font-semibold'>
-                            Project Images (2)
-                        </label>                
+                            Project Images 
+                        </label>
+                        {errors.projectImage && <span className="mt-0 text-red-600">* This element is required</span>}               
                         <input
                             placeholder="project images"
                             className="text-black p-2 bg-gray-100 rounded-md"
                             type="file"
-                            required
+                            {...register("projectImage", {required: "project Image is required"})}
+                            multiple
+                        />
+                    </div>
+
+                    
+                    <div className='flex flex-col gap-2'>
+                        <label className='text-hidding_text text-xl font-semibold'>
+                            Project Background Images
+                        </label> 
+                        {errors.projectImageBg && <span className="mt-0 text-red-600">* This element is required</span>}               
+                        <input
+                            placeholder="project background images"
+                            className="text-black p-2 bg-gray-100 rounded-md"
+                            type="file"
+                            {...register("projectImageBg", {required: "project Image is required"})}
+                            multiple
                         />
                     </div>
 
@@ -102,12 +170,13 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
                     <div className='flex flex-col gap-2'>
                         <label className='text-hidding_text text-xl font-semibold'>
                             Problem Images
-                        </label>                
+                        </label> 
+                        {errors.problemDesp && <span className="mt-0 text-red-600">* This element is required</span>}               
                         <input
                             placeholder="problem image"
                             className="text-black p-2 bg-gray-100 rounded-md"
                             type="file"
-                            required
+                            {...register("problemImage", {required: "problem description is required"})}
                         />
                     </div>
 
@@ -115,12 +184,13 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
                     <div className='flex flex-col gap-2'>
                         <label className='text-hidding_text text-xl font-semibold'>
                             Solution Images
-                        </label>                
+                        </label> 
+                        {errors.solutionImage && <span className="mt-0 text-red-600">* This element is required</span>}               
                         <input
                             placeholder="solution image"
                             className="text-black p-2 bg-gray-100 rounded-md"
                             type="file"
-                            required
+                            {...register("solutionImage", {required: "solution image is required"})}
                         />
                     </div>
 
@@ -128,18 +198,19 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
                     <div className='flex flex-col gap-2'>
                         <label className='text-hidding_text text-xl font-semibold'>
                             Result Images
-                        </label>                
+                        </label> 
+                        {errors.resultImage && <span className="mt-0 text-red-600">* This element is required</span>}               
                         <input
                             placeholder="Result image"
                             className="text-black p-2 bg-gray-100 rounded-md"
                             type="file"
-                            required
+                            {...register("resultImage", {required: "result image is required"})}
                         />
                     </div>
 
                     
                     <button type="submit" className="py-2 px-4 mx-auto rounded-md bg-white w-fit text-black">
-                        Add Skill
+                        Add Project
                     </button>
                 </form>
             </div>

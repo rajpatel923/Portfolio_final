@@ -27,6 +27,11 @@ router.route("/projectData").post(
   upload.fields([
     {
       name: "projectImage",
+      maxCount: 1,
+    },
+    {
+      name: "projectImageBg",
+      maxCount: 1,
     },
     {
       name: "problemImage",

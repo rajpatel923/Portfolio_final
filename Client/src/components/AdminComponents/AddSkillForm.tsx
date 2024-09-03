@@ -18,13 +18,36 @@ interface SkillsFormProps{
   }
 
 const AddSkillForm: React.FC<AddSkillFormProps> = ({onClose}) => {
-    const skillFormRef = useRef<HTMLDivElement>(null)
-    const {register, handleSubmit, formState: {errors, isSubmitting},reset} = useForm<SkillsFormProps>()
-    
-    const onSubmit: SubmitHandler<SkillsFormProps> = async(data)=>{
-        console.log(data)
-        reset()
+    const skillFormRef = useRef<HTMLDivElement>(null);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<SkillsFormProps>();
+
+  const onSubmit: SubmitHandler<SkillsFormProps> = async (formData) => {
+    console.log(formData);
+
+    // Create FormData object
+    const formDataToSend = new FormData();
+    formDataToSend.append('skillTitle', formData.skillTitle);
+    formDataToSend.append('skillDesp', formData.skillDesp);
+    formDataToSend.append('usageDesp', formData.usageDesp);
+    formDataToSend.append('whyIlike', formData.whyIlike);
+    formDataToSend.append('bgCoustomeColor', formData.bgCoustomeColor);
+    formDataToSend.append('skillImage', formData.skillImage[0]); // Only one file is appended
+    formDataToSend.append('skillBodyImage', formData.skillBodyImage[0]); // Only one file is appended
+
+    try {
+      const res = await axios.post('/api/v1/users/skillDetail', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log(res);
+    } catch (error) {
+      // TODO: Add a toast notification to notify the user
+      console.log(error);
     }
+
+    reset();
+  };
 
     const closeModel = (e:React.MouseEvent<HTMLDivElement>)=>{
         if(skillFormRef.current === e.target){
@@ -47,50 +70,52 @@ const AddSkillForm: React.FC<AddSkillFormProps> = ({onClose}) => {
                 <h1 className="text-center font-bold text-2xl mb-4">Edit the skills</h1>
                 <p className="text-hidding_text mb-8 text-xl font-medium">Fill out the form and go ahead and submit!!</p>
                 <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit(onSubmit)}>
+                    {errors.skillTitle && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
-                        placeholder="Skill_Title"
+                        placeholder="Skill Title"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type="text"
-                        required
                         {...register("skillTitle", {required: "Skill Tilte is required"})}
                     />
+                    {errors.skillDesp && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
                         placeholder="Skill Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
                         {...register("skillDesp", {required: "Skill Desp is required"})}
                     />
+                    {errors.usageDesp && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
                         placeholder="Usage Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
                         {...register("usageDesp", {required: "usage desp is required"})}
                     />
+                    {errors.whyIlike && <span className="mt-0 text-red-600">* This element is required</span>}
                     <textarea
                         placeholder="Why I like"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        required
                         {...register("whyIlike", {required: "why i like desp is required"})}
                     />
+                    {errors.bgCoustomeColor && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Choose Color"
                         className="p-2 rounded-full"
                         type="color"
-                        required
                         {...register("bgCoustomeColor", {required: "color is require"})}
                     />
                     {/* //todo to handle file save with react-hook-form and then send it to axios */}
+                    {errors.skillImage && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Skill_Image"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type="file"
-                        required
+                        {...register("skillImage", {required: "Skill image is required!"})}
                     />
+                    {errors.skillBodyImage && <span className="mt-0 text-red-600">* This element is required</span>}
                     <input
                         placeholder="Skill_bg"
                         className="text-black p-2 bg-gray-100 rounded-md"
                         type="file"
-                        required
+                        {...register("skillBodyImage", {required: "Skill body image is required!"})}
                     />
                     <button type="submit" className="py-2 px-4 mx-auto rounded-md bg-white w-fit text-black">
                         Add Skill

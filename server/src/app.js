@@ -43,9 +43,11 @@ import userRouter from "./routes/skills.routes.js";
 import contactRouter from "./routes/contact.routes.js";
 import { googleRouter } from "./routes/google.routes.js";
 import { AdminRouter } from "./routes/user.routes.js";
+import { BlogRoutes } from "./routes/blogs.routes.js";
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/contactMe", contactRouter);
 app.use("/", googleRouter);
 app.use("/api/v1", AdminRouter);
+app.use("/api/v1", BlogRoutes);
 
 export { app };
