@@ -4,7 +4,6 @@ import linkedInSvg from "../assets/linkedIn.svg"
 import githubSvg from "../assets/Github.svg"
 import { NavLink } from "react-router-dom"
 import { IoDocumentTextOutline } from "react-icons/io5";
-import { PiArrowBendRightDownBold } from "react-icons/pi";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -53,12 +52,12 @@ function Footer() {
                 </NavLink>
 
                 {/* this is absolute to the three right blocks  */}
-                <div className=" hidden lg:block text-nowrap absolute top-[-70px] right-[0]  text-icon_color ">
+                {/* <div className=" hidden lg:block text-nowrap absolute top-[-70px] right-[0]  text-icon_color ">
                         <h3 className="flex items-start flex-row gap-4">
                             <span className=" font-thin text-2xl text-hidding_text">check out my resume</span>
                             <span><PiArrowBendRightDownBold id="resuem_arrow" className="mt-3 h-9 w-9"/></span>
                         </h3>     
-                </div>
+                </div> */}
             </div>
         </div>
     </>
