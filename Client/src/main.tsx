@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
@@ -6,6 +6,7 @@ import './index.css'
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -23,7 +24,33 @@ import AdminLayout from './layouts/AdminLayout.tsx';
 import AdminLogin from './components/AdminComponents/AdminLogin.tsx';
 import AdminPage from './pages/adminHomePage.tsx';
 import Article from './components/Article.tsx';
+import { useAuthStore } from './store/authStore.ts';
 
+
+interface RedirectAuthenticatedUserProps {
+  children: ReactNode;
+}
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  const { isAuthenticated } = useAuthStore();
+
+  // Redirect to login if not authenticated
+  if (!isAuthenticated) {
+    return <Navigate to='/admin/dashboard/login' replace />;
+  }
+
+
+  // Render children if the user is authenticated and authorized
+  return <>{children}</>;
+};
+
+const RedirectAuthenticatedUser: React.FC<RedirectAuthenticatedUserProps> = ({ children }) => {
+  const { isAuthenticated, user } = useAuthStore();
+  if (isAuthenticated && user?.user_image) {
+    return <Navigate to='/admin/dashboard' replace />;
+  }
+  return <>{children}</>;
+};
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,12 +69,19 @@ const router = createBrowserRouter(
         <Route path='*' element={<Error/>}/>
       </Route>
       <Route path="" element={<AdminLayout/>}>
-        <Route path='/admin/dashboard/login' element={<AdminLogin/>}/>
+        <Route path='/admin/dashboard/login' element={
+                                        <RedirectAuthenticatedUser>
+                                          <AdminLogin/>
+                                      </RedirectAuthenticatedUser>
+                                    }/>
         //todo:- anything inside below this code need authentication !!
-        <Route path='/admin/dashboard' element={<AdminPage/>}/>
+        <Route path='/admin/dashboard' element={
+          <ProtectedRoute>
+            <AdminPage/>
+          </ProtectedRoute>
+          }/>
       </Route>
-   </Route>
-    
+   </Route> 
   )
 )
 

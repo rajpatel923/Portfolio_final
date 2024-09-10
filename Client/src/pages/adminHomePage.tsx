@@ -1,34 +1,26 @@
 
-import { useEffect, useState } from 'react';
 import AdminNavbar from '../components/AdminComponents/AdminNavBar'
-import axios from 'axios';
+
 import AdminHero from '../components/AdminComponents/AdminHero';
+import {Toaster} from 'react-hot-toast'
+import { useAuthStore } from '../store/authStore';
+import Loader from '../components/Loader';
 
-interface userProps{
-  email: string,
-  firstname:string,
-  lastname:string,
-  user_image:string,
-}
 const AdminPage = () => {
-  const [user, setUser] = useState<userProps>();
 
-    useEffect(() => {
-      // Fetch user information from the backend
-      axios.get(`/api/v1/api/user`, { withCredentials: true })
-        .then(response => {
-          console.log(response.data)
-          setUser(response.data);
-        })
-        .catch(error => {
-          console.error('Error fetching user data:', error);
-        });
-    }, []);
-  
+   const { user } = useAuthStore()
+
+   if(user?.email != "12g23raj.nes@gmail.com"){
+    return<>
+      <Loader/>
+    </>
+   }
+
   return (
     <div>
         <AdminNavbar user_image={user?.user_image}/>
         <AdminHero/>
+        <Toaster/>
     </div>
   )
 }

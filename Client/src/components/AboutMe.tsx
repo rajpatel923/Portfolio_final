@@ -13,7 +13,8 @@ const AboutMe = () => {
     titleDesp: '',
     numberOfProjects: 0,
     yearsOfExp: 0,
-    profileImage: ''
+    profileImage: '',
+    grad_year: ''
   };
 
   const [aboutMeContentFromDbs,setaboutMeContentFromDbs]= useState(initialState)
@@ -88,10 +89,10 @@ const AboutMe = () => {
                     {/* item3 */}
                     <div className=' flex flex-col'>
                       <div className='text-4xl font-bold mb-[3%]'>
-                        <h2 className='text-white/90'>{aboutMeContentFromDbs.numberOfProjects} <span className=' text-secondary_tx_color'>+</span></h2>
+                        <h2 className='text-white/90'>{aboutMeContentFromDbs.grad_year}</h2>
                       </div>
                       <div>
-                        <p>Projects Completed</p>
+                        <p>Undergradute in Year</p>
                       </div>
                     </div>
                 </div>

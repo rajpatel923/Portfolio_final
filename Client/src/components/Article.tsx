@@ -31,6 +31,12 @@ const Article = () => {
         return <Loader/>
     }
 
+    if(articles?.length == 0){
+        return <div className='flex h-full items-center justify-center'>
+            <h1 className=' text-hidding_text text-2xl font-bold'>No articles are available at the moment!</h1>
+        </div>
+    }
+
   return (
     <div>
         <div className=' hidden  h-[5vh] bg-primary_b lg:grid grid-cols-8 text-hidding_text'>
