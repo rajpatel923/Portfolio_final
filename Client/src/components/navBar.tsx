@@ -21,7 +21,7 @@ function NavBar() {
     const onExploreButtonClickHandler =()=>{
         setExploreSectionVisible(!exploreSectionVisible)
         gsap.to("#downwardArrow",{
-            rotate: exploreSectionVisible ? 180 : 0,
+            rotate: exploreSectionVisible ? 0 : 180,
             duration: 0.3,
             ease: "power2.inOut"
         })

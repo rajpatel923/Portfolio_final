@@ -42,7 +42,7 @@ const RootLayout = ({heroSectionHeadingOne, heroSectionHeadingTwo, heroSectionHe
             <NavBar/>
             <div className='w-full border-t-[0.75px] border-gray-500/75'></div>
           </header>
-          <main className='flex flex-grow overflow-y-scroll  '>
+          <main className='flex flex-grow overflow-y-scroll   '>
             <Outlet/>
           </main>
           <footer className='z-10 -bottom-11 w-full lg:static '>

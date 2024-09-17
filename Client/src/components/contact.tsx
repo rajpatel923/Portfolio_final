@@ -26,7 +26,7 @@ const Contact = () => {
     reset()
   }
   return (
-    <div className='bg-detailSectionBgNav/75 h-fit lg:h-full lg:w-full  text-gray-300' >
+    <div className='bg-detailSectionBgNav/75 h-fit lg:h-full w-full text-gray-300' >
       <div className=' flex gap-5 flex-col w-full items-center lg:my-20  my-36 '>
         <h1 className='font-extrabold text-4xl text-slate-50 mx-4 '>Contact Me</h1>
         <p className='text-gray-300 font-m text-center mx-4'>Don't hesitate to reach out by filling out the form provided below.</p>
