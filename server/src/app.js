@@ -4,8 +4,12 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
 import "./utils/passportConfig.js";
+import path from "path";
 
 const app = express();
+
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, "/dist")));
 
 app.use(
   cors({
@@ -49,5 +53,9 @@ app.use("/api/v1/contactMe", contactRouter);
 app.use("/", googleRouter);
 app.use("/api/v1", AdminRouter);
 app.use("/api/v1", BlogRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(_dirname, "dist", "index.html"));
+});
 
 export { app };

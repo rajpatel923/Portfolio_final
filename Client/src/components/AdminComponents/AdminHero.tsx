@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaPlus } from "react-icons/fa6";
 import AddSkillForm from './AddSkillForm';
 import AddProjectForm from './AddProjectForm';

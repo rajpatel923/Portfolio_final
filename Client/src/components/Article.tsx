@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ArticleList from './ArticleList/ArticleList'
 import axios from 'axios'
 import Loader from './Loader'
@@ -32,7 +32,7 @@ const Article = () => {
     }
 
     if(articles?.length == 0){
-        return <div className='flex h-full items-center justify-center'>
+        return <div className='flex h-full items-center justify-center text-center'>
             <h1 className=' text-hidding_text text-2xl font-bold'>No articles are available at the moment!</h1>
         </div>
     }

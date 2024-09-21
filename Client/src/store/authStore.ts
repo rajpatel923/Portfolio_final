@@ -16,6 +16,7 @@ interface AuthState {
   isLoading: boolean;
   isCheckingAuth: boolean;
   message: string | null;
+  checkAuth: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
