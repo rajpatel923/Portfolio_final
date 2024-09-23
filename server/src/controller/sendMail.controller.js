@@ -4,7 +4,7 @@ import handlebars from "handlebars";
 import fs from "fs";
 import path from "path";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { ApiError } from "next/dist/server/api-utils/index.js";
+import { ApiError } from "../utils/ApiError.js";
 
 const notifyProvider = async (fullName, email, phoneNumber, message) => {
   const filePath = path.join(process.cwd(), "public", "html", "sender.html");

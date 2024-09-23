@@ -3,7 +3,7 @@ import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 
 async function googleAuthentication() {
-  const baseURL = import.meta.env.VITE_BACKEND_URL || ""
+  const baseURL = import.meta.env.VITE_BACKEND_URL || "http://34.195.121.125:8080/"
     window.location.href = `${baseURL}/auth/google`;
 }
 

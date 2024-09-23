@@ -1,4 +1,3 @@
-import { cookies } from "next/headers.js";
 import { skills } from "../models/skills.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
