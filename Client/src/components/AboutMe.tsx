@@ -93,7 +93,7 @@ const AboutMe = () => {
                         <h2 className='text-white/90'>{aboutMeContentFromDbs.grad_year}</h2>
                       </div>
                       <div>
-                        <p>Undergradute in Year</p>
+                        <p>Graduation in the year</p>
                       </div>
                     </div>
                 </div>
