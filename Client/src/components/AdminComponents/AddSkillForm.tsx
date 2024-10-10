@@ -19,7 +19,11 @@ interface SkillsFormProps{
 
 const AddSkillForm: React.FC<AddSkillFormProps> = ({onClose}) => {
     const skillFormRef = useRef<HTMLDivElement>(null);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm<SkillsFormProps>();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<SkillsFormProps>({
+      defaultValues: {
+        bgCoustomeColor: "#000000" // Set a default color value here
+      }
+    });
 
   const onSubmit: SubmitHandler<SkillsFormProps> = async (formData) => {
     console.log(formData);
