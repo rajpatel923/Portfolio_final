@@ -14,10 +14,24 @@ const Contact = () => {
   const inputStyle = "appearance-none shadow leading-tight focus:outline-none focus:shadow-outline px-4 py-2 border rounded-lg text-black"
   
   const onSubmit: SubmitHandler<contactMeForm> = async(data)=> {
+    const { phoneNumber} = data
+    const length = phoneNumber.length
+    let actualNumber = ""
+    for (let index = 0; index <length; index++) {
+      if(phoneNumber[index]=== '-'){
+        actualNumber = phoneNumber.substring(index+1,length)
+        console.log(actualNumber)
+
+        if(actualNumber.length!=10){
+          alert("NOt a valid phone number!")
+        }
+        break;
+      }
+    }
     axios.post("/api/v1/contactMe/sendMail",{
       ...data
-    }).then(function () {
-      
+    }).then((data)=> {
+      console.log(data)
     })
     .catch(function (error) {
       // todo to have a tost to notify the user
@@ -42,14 +56,12 @@ const Contact = () => {
               required: "Email is required"
             })}/>
           </div>
-          <input type='number' placeholder='Phone Number' className={`${inputStyle}  text-gray-300 w-full mb-4 border-[0px] shadow-md font-[400] bg-[#323232] focus:border-[1px] ${errors.phoneNumber && " border-red-700 border-[3px]"}`} {...register("phoneNumber", {
+
+          <input placeholder='Phone Number' className={`${inputStyle}  text-gray-300 w-full mb-4 border-[0px] shadow-md font-[400] bg-[#323232] focus:border-[1px] ${errors.phoneNumber && " border-red-700 border-[3px]"}`} {...register("phoneNumber", {
             required: "Phone number is required", minLength:{
               value: 10,
               message: "A 10 digit phone number is valid"
-            }, maxLength:{
-              value:10,
-              message:"A 10 digit phone number is valid"
-            }
+            },
           })}/>
           <textarea  placeholder='Message' className={`${inputStyle}  text-gray-300 w-full h-[120px] mb-4 border-[0px] shadow-md font-[400] bg-[#323232] focus:border-[1px]  ${errors.message && " border-red-700 border-[3px]"} `} {...register("message", {
             required: "Type something to for!!"
