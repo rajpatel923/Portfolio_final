@@ -1,57 +1,70 @@
-import { asyncHandler } from "../utils/asyncHandler.js";
-import nodemailer from "nodemailer";
+import sgMail from "@sendgrid/mail";
 import handlebars from "handlebars";
 import fs from "fs";
 import path from "path";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { ApiError } from "../utils/ApiError.js";
 
-const createTransporter = () =>
-  nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.NODEMAILER_USER,
-      pass: process.env.NODEMAILER_PASS,
-    },
-  });
+const { SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, SENDGRID_PROVIDER_EMAIL } =
+  process.env;
 
-const notifyProvider = async (fullName, email, phoneNumber, message) => {
-  const filePath = path.join(process.cwd(), "public", "html", "sender.html");
-  const source = fs.readFileSync(filePath, "utf-8").toString();
-  const template = handlebars.compile(source);
-  const htmlToSend = template({ fullName, phoneNumber, email, message });
+if (!SENDGRID_API_KEY || !SENDGRID_FROM_EMAIL || !SENDGRID_PROVIDER_EMAIL) {
+  throw new Error(
+    "Missing required env vars: SENDGRID_API_KEY, SENDGRID_FROM_EMAIL, SENDGRID_PROVIDER_EMAIL"
+  );
+}
 
-  await createTransporter().sendMail({
-    from: process.env.NODEMAILER_USER,
-    to: "patelraj2@yahoo.com",
-    subject: "New Contact Request",
-    text: "Got new connection !",
-    html: htmlToSend,
-    headers: { "x-myheader": "test header" },
-  });
+sgMail.setApiKey(SENDGRID_API_KEY);
+
+const FROM_EMAIL = SENDGRID_FROM_EMAIL;
+const PROVIDER_EMAIL = SENDGRID_PROVIDER_EMAIL;
+
+const renderTemplate = (templateName, replacements) => {
+  const filePath = path.join(
+    process.cwd(),
+    "public",
+    "html",
+    `${templateName}.html`
+  );
+  const source = fs.readFileSync(filePath, "utf-8");
+  return handlebars.compile(source)(replacements);
 };
 
 const sendMail = asyncHandler(async (req, res) => {
   const { fullName, email, phoneNumber, message } = req.body;
 
-  await notifyProvider(fullName, email, phoneNumber, message);
-
-  const filePath = path.join(process.cwd(), "public", "html", "receiver.html");
-  const source = fs.readFileSync(filePath, "utf-8").toString();
-  const template = handlebars.compile(source);
-  const htmlToSend = template({ firstName: fullName });
-
-  await createTransporter().sendMail({
-    from: process.env.NODEMAILER_USER,
-    to: email,
-    subject: "Thank You for Contacting Me",
-    text: "Don't worry I got your information !",
-    html: htmlToSend,
-    headers: { "x-myheader": "test header" },
+  const providerHtml = renderTemplate("sender", {
+    fullName,
+    phoneNumber,
+    email,
+    message,
   });
 
-  res.status(200).json(new ApiResponse(200, {}, "Successfully sent the mail"));
+  const receiverHtml = renderTemplate("receiver", {
+    firstName: fullName,
+  });
+
+  await Promise.all([
+    sgMail.send({
+      from: FROM_EMAIL,
+      to: PROVIDER_EMAIL,
+      subject: "New Contact Request",
+      text: `New contact from ${fullName} (${email})`,
+      html: providerHtml,
+    }),
+    sgMail.send({
+      from: FROM_EMAIL,
+      to: email,
+      subject: "Thank You for Contacting Me",
+      text: "I received your message and will get back to you soon.",
+      html: receiverHtml,
+    }),
+  ]);
+
+  res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Your message has been sent successfully."));
 });
 
 export { sendMail };
