@@ -58,4 +58,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(_dirname, "dist", "index.html"));
 });
 
+app.get("/health", (req, res) => res.send("Server is running"))
+
 export { app };
