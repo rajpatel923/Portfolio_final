@@ -8,7 +8,7 @@ const connectDB = async()=>{
         console.log(`Succesfully connected with DBS with ${moongoDBConnect.connection.host}`) 
     }catch(err){
         console.error("Fail to connect with mongodb", err);
-        process.exit(1)
+        throw err;
     }
 }
 export default connectDB;
