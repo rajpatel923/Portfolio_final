@@ -12,6 +12,12 @@ const blogSchema = new Schema(
       type: Date,
       default: Date.now(),
     },
+    content: {
+      type: String,
+    },
+    coverImage: {
+      type: String,
+    },
   },
   {
     timestamps: true,

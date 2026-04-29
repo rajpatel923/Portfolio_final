@@ -19,7 +19,7 @@ const skillsRegister = asyncHandler(async (req, res) => {
   }
   const skillsExist = await skills.find({ skillTitle });
 
-  if (!skillsExist) {
+  if (skillsExist.length > 0) {
     throw new ApiError(401, "The skill already exist in the dbs");
   }
   const skillImageLocalPath = req.files?.skillImage[0]?.path;

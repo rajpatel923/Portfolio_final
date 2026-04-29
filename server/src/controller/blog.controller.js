@@ -2,9 +2,10 @@ import { blog } from "../models/Blog.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { upLoadFileOnCloudinary } from "../utils/cloudinary.js";
 
 const addBlog = asyncHandler(async (req, res) => {
-  const { title, category } = req.body;
+  const { title, category, content } = req.body;
   const date = Date.now();
 
   if (
@@ -16,26 +17,38 @@ const addBlog = asyncHandler(async (req, res) => {
     throw new ApiError(401, "You need to add title and category");
   }
 
-  const _blog = blog.findOne({ title });
+  const _blog = await blog.findOne({ title });
 
-  if (!_blog) {
-    throw new ApiError(401, "Blog with the same still is avaible in the Db");
+  if (_blog) {
+    throw new ApiError(401, "Blog with the same title is already in the DB");
   }
 
-  const addBlog = blog.create({
+  const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
+  let coverImageUrl;
+  if (coverImageLocalPath) {
+    const uploaded = await upLoadFileOnCloudinary(coverImageLocalPath);
+    if (!uploaded) {
+      throw new ApiError(501, "Error uploading cover image to Cloudinary");
+    }
+    coverImageUrl = uploaded.url;
+  }
+
+  const newBlog = await blog.create({
     title,
     category,
     date,
+    content,
+    ...(coverImageUrl && { coverImage: coverImageUrl }),
   });
 
-  if (!addBlog) {
+  if (!newBlog) {
     throw new ApiError(501, "Had error while saving data to the DB");
   }
 
   return res
     .status(200)
     .json(
-      new ApiResponse(200, addBlog, "Blog is successfully added to the Db")
+      new ApiResponse(200, newBlog, "Blog is successfully added to the Db")
     );
 });
 
@@ -47,4 +60,14 @@ const getBlogs = asyncHandler(async (req, res) => {
   }
   res.status(200).json(new ApiResponse(200, blogs, "Successful to get data"));
 });
-export { addBlog, getBlogs };
+
+const getBlogById = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const foundBlog = await blog.findById(id);
+  if (!foundBlog) {
+    throw new ApiError(404, "Blog not found");
+  }
+  res.status(200).json(new ApiResponse(200, foundBlog, "Blog fetched successfully"));
+});
+
+export { addBlog, getBlogs, getBlogById };

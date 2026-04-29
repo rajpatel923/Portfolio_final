@@ -15,6 +15,7 @@ import {
   skillsRegister,
 } from "../controller/skills.controller.js";
 import { upload } from "../middlerware/multer.middleware.js";
+import { isAdmin } from "../middlerware/isAdmin.middleware.js";
 
 const router = Router();
 
@@ -24,6 +25,7 @@ router.route("/aboutMe").get(getAboutmeContent);
 //projects
 router.route("/getProjectsName").get(getProjectsName);
 router.route("/projectData").post(
+  isAdmin,
   upload.fields([
     {
       name: "projectImage",
@@ -52,6 +54,7 @@ router.route("/getProjectDetails").get(getProjectDetails);
 
 //adding skills to the dbs
 router.route("/skillDetail").post(
+  isAdmin,
   upload.fields([
     {
       name: "skillImage",
