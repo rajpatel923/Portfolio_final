@@ -22,14 +22,14 @@ const skillsRegister = asyncHandler(async (req, res) => {
   if (skillsExist.length > 0) {
     throw new ApiError(401, "The skill already exist in the dbs");
   }
-  const skillImageLocalPath = req.files?.skillImage[0]?.path;
-  const skillBodyImageLocalPath = req.files?.skillBodyImage[0]?.path;
-  if (!skillBodyImageLocalPath || !skillImageLocalPath) {
+  const skillImageBuffer = req.files?.skillImage[0]?.buffer;
+  const skillBodyImageBuffer = req.files?.skillBodyImage[0]?.buffer;
+  if (!skillBodyImageBuffer || !skillImageBuffer) {
     throw new ApiError(401, "SkillImage and Body image is must");
   }
 
-  const skillImage = await upLoadFileOnCloudinary(skillImageLocalPath);
-  const skillBodyImage = await upLoadFileOnCloudinary(skillBodyImageLocalPath);
+  const skillImage = await upLoadFileOnCloudinary(skillImageBuffer);
+  const skillBodyImage = await upLoadFileOnCloudinary(skillBodyImageBuffer);
 
   if (!skillImage || !skillBodyImage) {
     throw new ApiError(501, "Error while uploading images on cloudinary");

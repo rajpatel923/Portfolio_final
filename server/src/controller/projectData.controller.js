@@ -38,23 +38,21 @@ const addProjectData = asyncHandler(async (req, res) => {
       "The project is alreay present in dbs with the same tilte"
     );
   }
-  const projectImageLocalPathFirst = req.files?.projectImage[0]?.path;
-
-  const projectImageLocalPathSecond = req.files?.projectImageBg[0]?.path;
-
-  const problemImageLocalPath = req.files?.problemImage[0]?.path;
-  const solutionImageLocalPath = req.files?.solutionImage[0]?.path;
-  const resultImageLocalPath = req.files?.resultImage[0]?.path;
+  const projectImageBufferFirst = req.files?.projectImage[0]?.buffer;
+  const projectImageBufferSecond = req.files?.projectImageBg[0]?.buffer;
+  const problemImageBuffer = req.files?.problemImage[0]?.buffer;
+  const solutionImageBuffer = req.files?.solutionImage[0]?.buffer;
+  const resultImageBuffer = req.files?.resultImage[0]?.buffer;
 
   if (
     [
-      projectImageLocalPathFirst,
-      problemImageLocalPath,
-      solutionImageLocalPath,
-      resultImageLocalPath,
-      projectImageLocalPathSecond,
+      projectImageBufferFirst,
+      problemImageBuffer,
+      solutionImageBuffer,
+      resultImageBuffer,
+      projectImageBufferSecond,
     ].some((field) => {
-      return field === "" || field === undefined;
+      return field === undefined;
     })
   ) {
     throw new ApiError(
@@ -63,16 +61,11 @@ const addProjectData = asyncHandler(async (req, res) => {
     );
   }
 
-  const projectImageFirst = await upLoadFileOnCloudinary(
-    projectImageLocalPathFirst
-  );
-
-  const projectImageSecond = await upLoadFileOnCloudinary(
-    projectImageLocalPathSecond
-  );
-  const problemImage = await upLoadFileOnCloudinary(problemImageLocalPath);
-  const solutionImage = await upLoadFileOnCloudinary(solutionImageLocalPath);
-  const resultImage = await upLoadFileOnCloudinary(resultImageLocalPath);
+  const projectImageFirst = await upLoadFileOnCloudinary(projectImageBufferFirst);
+  const projectImageSecond = await upLoadFileOnCloudinary(projectImageBufferSecond);
+  const problemImage = await upLoadFileOnCloudinary(problemImageBuffer);
+  const solutionImage = await upLoadFileOnCloudinary(solutionImageBuffer);
+  const resultImage = await upLoadFileOnCloudinary(resultImageBuffer);
 
   if (!projectImageFirst || !projectImageSecond) {
     throw new ApiError(501, "Project image fail to upload on cloudinary");

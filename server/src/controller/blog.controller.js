@@ -23,10 +23,10 @@ const addBlog = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Blog with the same title is already in the DB");
   }
 
-  const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
+  const coverImageBuffer = req.files?.coverImage?.[0]?.buffer;
   let coverImageUrl;
-  if (coverImageLocalPath) {
-    const uploaded = await upLoadFileOnCloudinary(coverImageLocalPath);
+  if (coverImageBuffer) {
+    const uploaded = await upLoadFileOnCloudinary(coverImageBuffer);
     if (!uploaded) {
       throw new ApiError(501, "Error uploading cover image to Cloudinary");
     }

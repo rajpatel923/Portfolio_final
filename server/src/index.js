@@ -1,29 +1,16 @@
 import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
 import connectDB from "./db/db.js";
 import { app } from "./app.js";
 
-dotenv.config({ path: "./.env" });
+// Connect DB at module load (works for both local dev and Vercel cold starts)
+connectDB().catch((err) => console.log("MongoDB connection fail", err));
 
-const PORT = process.env.PORT || 8000;
+// Only bind a port when running locally (Vercel sets VERCEL=1 automatically)
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => console.log(`Running server at PORT ${PORT}`));
+}
 
-connectDB()
-  .then(() => {
-    const server = app.listen(PORT, () => {
-      console.log(`Running server at PORT ${PORT}`);
-    });
-
-    server.on("error", (error) => {
-      if (error.code === "EADDRINUSE") {
-        console.error(
-          `Port ${PORT} is already in use. Stop the process using it or set a different PORT.`
-        );
-        process.exit(1);
-      }
-
-      console.error("Server error: ", error);
-      throw error;
-    });
-  })
-  .catch((err) => {
-    console.log("Mongo db connection fail", err);
-  });
+export default app;

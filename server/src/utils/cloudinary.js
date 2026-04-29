@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from "cloudinary";
-import fs from "fs";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_API_NAME,
@@ -7,20 +6,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const upLoadFileOnCloudinary = async (localFilePath) => {
-  try {
-    if (!localFilePath) {
-      return null;
-    }
-    const fileURL = await cloudinary.uploader.upload(localFilePath, {
-      resource_type: "auto",
-    });
-    fs.unlinkSync(localFilePath);
-    return fileURL;
-  } catch (error) {
-    fs.unlinkSync(localFilePath);
-    return null;
-  }
+// Upload from a Buffer (used with multer memoryStorage)
+const upLoadFileOnCloudinary = async (buffer) => {
+  if (!buffer) return null;
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { resource_type: "auto" },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
+    stream.end(buffer);
+  });
 };
 
 export { upLoadFileOnCloudinary };
