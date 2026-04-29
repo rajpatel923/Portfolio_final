@@ -24,6 +24,7 @@ import AdminLayout from './layouts/AdminLayout.tsx';
 import AdminLogin from './components/AdminComponents/AdminLogin.tsx';
 import AdminPage from './pages/adminHomePage.tsx';
 import Article from './components/Article.tsx';
+import ArticleDetailPage from './pages/ArticleDetailPage.tsx';
 import { useAuthStore } from './store/authStore.ts';
 
 
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
             <Route path='/projects' element={<Projects/>}/>
             <Route path='projects/:projects' element={<ProjectsDetail/>}/>
             <Route path='/articles' element={<Article/>}/>
+            <Route path='/articles/:id' element={<ArticleDetailPage/>}/>
         </Route>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='*' element={<Error/>}/>

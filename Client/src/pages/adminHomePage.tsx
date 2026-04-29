@@ -10,7 +10,7 @@ const AdminPage = () => {
 
    const { user } = useAuthStore()
 
-   if(user?.email != "12g23raj.nes@gmail.com"){
+   if(user?.email != import.meta.env.VITE_ADMIN_EMAIL){
     return<>
       <Loader/>
     </>

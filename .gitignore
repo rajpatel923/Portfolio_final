@@ -1,1 +1,4 @@
 portfolio_key copy.pem
+
+Client/.env
+server/.env

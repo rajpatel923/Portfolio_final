@@ -4,6 +4,7 @@ import axios from 'axios'
 import Loader from './Loader'
 
 interface Article{
+    _id: string,
     title: string,
     category: string,
     date: string
@@ -61,7 +62,7 @@ const Article = () => {
             <ArticleList category='web development' date='12/12/2003' title='flex flex-col items-center text-center mt-1'/> */}
             {
                 articles?.map((blog)=>{
-                    return <ArticleList category={blog.category} date={blog.date} title={blog.title}/>
+                    return <ArticleList key={blog._id} id={blog._id} category={blog.category} date={blog.date} title={blog.title}/>
                 })
             }
         </div>

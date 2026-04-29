@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
-import axios from 'axios'
+import toast from 'react-hot-toast'
 import {useForm, SubmitHandler} from 'react-hook-form'
+import axiosInstance from '../../api/axiosInstance'
 
 interface AddProjectFormProps {
     onClose: () => void;
@@ -27,8 +28,6 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm<ProjectFormProps>();
     
     const onSubmit: SubmitHandler<ProjectFormProps> = async (formData) => {
-        console.log(formData);
-    
         const formDataToSend = new FormData();
         formDataToSend.append('title', formData.title);
         formDataToSend.append('description', formData.description);
@@ -55,16 +54,16 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
           formDataToSend.append('resultImage', formData.resultImage[0]);
         }
         try {
-            const res = await axios.post('/api/v1/users/projectData', formDataToSend, {
+            await axiosInstance.post('/api/v1/users/projectData', formDataToSend, {
               headers: {
                 'Content-Type': 'multipart/form-data',
               },
             });
-            console.log(res);
+            toast.success('Project added successfully!')
+            onClose()
         } catch (error) {
-            // TODO: Add a toast notification to notify the user
-            console.log(error);
-          }
+            toast.error('Failed to add project. Please try again.')
+        }
         reset()
     };
     const closeModel = (e:React.MouseEvent<HTMLDivElement>)=>{
@@ -132,7 +131,7 @@ const AddProjectForm:React.FC<AddProjectFormProps> = ({onClose}) => {
                     <textarea
                         placeholder="Result Description"
                         className="text-black p-2 bg-gray-100 rounded-md"
-                        {...register("solutionDesp", {required: "solutionDesp is required"})}
+                        {...register("resultDesp", {required: "resultDesp is required"})}
                     />
 
                     {/* project images */}

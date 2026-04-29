@@ -1,6 +1,7 @@
 import { useRef } from "react"
-import axios from 'axios'
+import toast from 'react-hot-toast'
 import {useForm, SubmitHandler} from 'react-hook-form'
+import axiosInstance from '../../api/axiosInstance'
 
 
 interface AddSkillFormProps {
@@ -26,8 +27,6 @@ const AddSkillForm: React.FC<AddSkillFormProps> = ({onClose}) => {
     });
 
   const onSubmit: SubmitHandler<SkillsFormProps> = async (formData) => {
-    console.log(formData);
-
     // Create FormData object
     const formDataToSend = new FormData();
     formDataToSend.append('skillTitle', formData.skillTitle);
@@ -39,15 +38,15 @@ const AddSkillForm: React.FC<AddSkillFormProps> = ({onClose}) => {
     formDataToSend.append('skillBodyImage', formData.skillBodyImage[0]); // Only one file is appended
 
     try {
-      const res = await axios.post('/api/v1/users/skillDetail', formDataToSend, {
+      await axiosInstance.post('/api/v1/users/skillDetail', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(res);
+      toast.success('Skill added successfully!')
+      onClose()
     } catch (error) {
-      // TODO: Add a toast notification to notify the user
-      console.log(error);
+      toast.error('Failed to add skill. Please try again.')
     }
 
     reset();

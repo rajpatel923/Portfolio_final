@@ -17,6 +17,7 @@ interface AuthState {
   isCheckingAuth: boolean;
   message: string | null;
   checkAuth: () => Promise<void>;
+  logout: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -40,5 +41,14 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch (error) {
       set({ error: null, isCheckingAuth: false, isAuthenticated: false });
     }
+  },
+
+  logout: async () => {
+    try {
+      await axios.get(`/auth/logout`, { withCredentials: true });
+    } catch (_) {
+      // ignore errors, reset state regardless
+    }
+    set({ isAuthenticated: false, user: null });
   },
 }));
